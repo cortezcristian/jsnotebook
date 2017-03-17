@@ -1,6 +1,7 @@
 angular
   .module('jsnotebook', [
     'toastr',
+		'ngMaterial',
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -13,16 +14,14 @@ angular
     'ui.bootstrap'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, uiSelectConfig, datetimepickerProvider, hotkeysProvider, toastrConfig) {
-		/*
 		$stateProvider
 			.state({
-				name: 'empresas',
-				url: '/empresas',
-				controller: 'EmpresasCtrl',
-				templateUrl: 'views/empresas.html'
+				name: 'main',
+				url: '/main',
+				controller: 'MainCtrl',
+				templateUrl: 'views/main.html'
 			});
-		$urlRouterProvider.otherwise('/empresas');
-		*/
+		$urlRouterProvider.otherwise('/main');
 	})
 	.run(function($rootScope){
 
