@@ -25,9 +25,18 @@ header h1 {
 	margin: 0;
 	padding: 0;
 }
+.menuBardemoBasicUsage {
+}
+
+.menuBardemoBasicUsage .menu-con {
+	min-height: 96px;
+	border-bottom: 1px solid #ccc;
+	background: white;
+	margin-bottom: 17px;
+}
 
 .menuBardemoBasicUsage .page-container {
-  padding: 32px; }
+  padding: 64px 32px 32px; }
 
 .menuBardemoBasicUsage .page {
   margin: 0 auto;
