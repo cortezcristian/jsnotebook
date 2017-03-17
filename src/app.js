@@ -7,6 +7,7 @@ angular
     'ngResource',
     'ui.router',
     'ngSanitize',
+		'btford.markdown',
     'toggle-switch',
     'cfp.hotkeys',
     'ui.select',

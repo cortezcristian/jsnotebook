@@ -106,7 +106,6 @@ angular
 					$http.get(template, { cache: $templateCache })
 						.then(function(templateContent) {
 							console.log(template, templateContent);
-							debugger;
 							scope.rowmodel.loaded = true;
 							element.replaceWith($compile(templateContent.data)(scope));
 							//var s = angular.copy(scope);
