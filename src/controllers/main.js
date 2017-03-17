@@ -91,6 +91,7 @@ angular
 				});
 				*/
 				 var templates = {
+					 'code': 'views/smartrow-editor.html',
 					 'markdown': 'views/smartrow-markdown.html'
 				 };
 

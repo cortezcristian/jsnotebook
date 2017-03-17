@@ -12,6 +12,7 @@ angular
     'cfp.hotkeys',
     'ui.select',
     'datetimepicker',
+		'ui.ace',
     'ui.bootstrap'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, uiSelectConfig, datetimepickerProvider, hotkeysProvider, toastrConfig) {
