@@ -70,12 +70,37 @@ angular
 			$rootScope.doc.data[index].selected = true;
 		};
 
-		$rootScope.turnEditing = function(row, state){
+		// Focus one of many editors
+		// http://stackoverflow.com/questions/15662337/can-ace-editor-support-multiple-code-editors-in-one-page
+		// http://stackoverflow.com/questions/7050931/how-to-set-focus-on-the-ace-editor
+		/*
+		var editor;
+		$('[ui-ace]').each(function( index ) {
+			editor = ace.edit(this);
+			editor.getSession().setMode('ace/mode/csharp');
+		});
+		http://stackoverflow.com/questions/25452304/how-to-get-ace-editor-object-from-its-div-id
+		*/
+
+		// Turn on/off the editing flag to show the editor
+		$rootScope.turnEditing = function(row, state, event){
 			var index = $rootScope.doc.data.indexOf(row);
 			$log.log("Editing: ", state, row);
 			if(index !== -1) {
 				// If edition is off, state false
 				$rootScope.doc.data[index].editing = state;
+				if(state){
+					$log.log("Found editors: ", $(event.target, '[ace-ui]'));
+					/*
+					$(event.target, '.ace_editor').each(function(v){
+						editor = ace.edit(this);
+						console.log(editor)
+						editor.focus();
+					})
+					*/
+					var editor = ace.edit('editor_'+index);
+					editor.focus();
+				}
 			}
 		}
 
@@ -129,6 +154,11 @@ angular
 			]
 		};
 
+		// Prepare Data
+		angular.forEach($rootScope.doc.data, function(v,i){
+				$rootScope.doc.data[i].editor_id = 'editor_'+i;
+		});
+
 	  $scope.settings = {
       printLayout: true,
       showRuler: true,
@@ -147,7 +177,7 @@ angular
 
 	})
 	.directive('smartrow', function($log, $http, $compile, $parse,
-			$rootScope, $templateCache){
+			$rootScope, $timeout, $templateCache){
 		 return {
 			 restrict: 'EA',
 			 template: "",
@@ -224,12 +254,37 @@ angular
 										if(ind !== -1){
 											// Set Editing False
 											$rootScope.doc.data[ind].editing = false;
+											// Emit Change
+											ed.session._emit('change')
 										}
 									break;
 								}
 							},
 							bindKey: {mac: "shift-enter", win: "shift-enter"}
-					})
+					});
+
+					// Interceptor
+					_editor.commands.addCommand({
+							name: "Turn Edition Off",
+							exec: function(ed) {
+								$log.log("ace: Esc", item.rowtype);
+								$log.log("Esc item:", item);
+								var ind = $rootScope.doc.data.indexOf(item);
+								if(ind !== -1){
+									// Set Editing False
+									$rootScope.doc.data[ind].editing = false;
+									// Emit Change
+									//ed.session._emit('change')
+									//ed.renderer.updateFull();
+									//ed.setValue(ed.getValue(), 1);
+									//var script = ed.getValue();
+									$timeout(function(){
+										ed.session._emit("change");
+									}, 0)
+								}
+							},
+							bindKey: {mac: "esc", win: "esc"}
+					});
 
 					// Events
 					_editor.on("changeSession", function(){
