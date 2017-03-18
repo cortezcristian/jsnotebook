@@ -1,4 +1,5 @@
-<p>
+<div class="smartrow">
 	<pre class="hide"> {{rowmodel}} </pre>
-	<div ui-ace="{ onLoad : aceLoaded, mode: 'javascript' }" ng-model="rowmodel['source'][0]"></div>
-</p>
+	<div ui-ace="{ onLoad : aceLoaded, mode: 'javascript', minLines: 1 }"
+		ng-model="rowmodel['source'][0]"></div>
+</div>

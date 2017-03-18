@@ -1,5 +1,8 @@
-<p>
-	<pre class="hide"> {{rowmodel}} </pre>
-	<div btf-markdown="rowmodel['source'][0]">
+<div class="smartrow" ng-dblclick="rowmodel.editing=true">
+	<pre class="hidex"> {{rowmodel}} </pre>
+	<div ng-show="!rowmodel.editing" btf-markdown="rowmodel['source'][0]">
 	</div>
-</p>
+	<div ng-show="rowmodel.editing">
+		<div ui-ace="{ onLoad : aceLoaded, mode: 'markdown' }" ng-model="rowmodel['source'][0]"></div>
+	</div>
+</div>

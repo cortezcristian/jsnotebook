@@ -26,7 +26,16 @@ header h1 {
 	padding: 0;
 }
 
-.ace_editor { height: 200px; background: #ccc; }
+.smartrow {
+	border: 1px solid white;
+	padding: 5px;
+}
+
+.smartrow:hover {
+	border: 1px solid #ccc;
+}
+
+.ace_editor { min-height: 20px; background: #ccc; }
 
 .ace_content { background: #f7f7f7; }
 

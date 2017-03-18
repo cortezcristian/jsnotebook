@@ -27,8 +27,6 @@ angular
 
 		ipc.on('vm-result', function(event, res) {
 			// http://stackoverflow.com/questions/36548228/when-to-use-remote-vs-ipcrenderer-ipcmain
-			/*do stuff*/
-			debugger;
 			$log.info("vm-result", res);
 		});
 
@@ -123,26 +121,22 @@ angular
 
 				function loadTemplate(item) {
 					var template =  templates[item.rowtype] || "";
-					switch(item.rowtype){
-						case "code":
-							configAce();
-						break;
-					}
 					if(template !== "") {
+							configAce(item, scope);
 
 					$http.get(template, { cache: $templateCache })
 						.then(function(templateContent) {
 							console.log(template, templateContent);
 							scope.rowmodel.loaded = true;
-							element.replaceWith($compile(templateContent.data)(scope));
+							element.html($compile(templateContent.data)(scope));
 							//var s = angular.copy(scope);
 							//element.html($compile(templateContent.data)({}));
 						});
 					}
 				}
 
-				function configAce(){
-					$log.log("ace: Config Ace");
+				function configAce(item, scope){
+					$log.log("ace: Config Ace", item);
 				scope.aceLoaded = function(_editor){
 					// Editor part
 					var _session = _editor.getSession();
@@ -152,16 +146,26 @@ angular
 					//_editor.setReadOnly(true);
 					_session.setUndoManager(new ace.UndoManager());
 					_renderer.setShowGutter(false);
+					_editor.setHighlightActiveLine(false);
 
 					// Interceptor
 					_editor.commands.addCommand({
 							name: "Execute",
 							exec: function(ed) {
-								$log.log("ace: Execute");
-								debugger;
+								$log.log("ace: Execute", item.rowtype);
 								var script = ed.getValue();
-								ipc.send('vm-run', { script: script });
-								//$log.info(vm.run(script));
+								switch (item.rowtype) {
+									case 'code':
+										ipc.send('vm-run', { script: script });
+									break;
+									case 'markdown':
+										//item['source'][0] = script;
+										$log.log("Exxx", item);
+										//item.editing = false;
+										//scope.rowmodel.editing = false;
+										// do it globally? root scope
+									break;
+								}
 							},
 							bindKey: {mac: "shift-enter", win: "shift-enter"}
 					})
@@ -173,6 +177,32 @@ angular
 					_session.on("change", function(){
 						$log.log("ace: change");
 					});
+
+					// Update lines
+					var heightUpdateFunction = function() {
+
+						// http://stackoverflow.com/questions/11584061/
+						var newHeight =
+											_editor.getSession().getScreenLength()
+											* _editor.renderer.lineHeight
+											+ _editor.renderer.scrollBar.getWidth();
+
+						element.find('.ace_editor').height(newHeight.toString() + "px");
+						//$('.ace_editor-section').height(newHeight.toString() + "px");
+
+						// This call is required for the editor to fix all of
+						// its inner structure for adapting to a change in size
+						_editor.resize();
+				};
+
+				// Set initial size to match initial content
+				heightUpdateFunction();
+
+				// Whenever a change happens inside the ACE editor, update
+				// the size again
+				_editor.getSession().on('change', heightUpdateFunction);
+
+
 				};
 
 			 }
