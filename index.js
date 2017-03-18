@@ -1,5 +1,8 @@
 'use strict';
 const electron = require('electron');
+const {VM} = require('vm2');
+const vm = new VM();
+const ipcMain = require('electron').ipcMain;
 
 const app = electron.app;
 
@@ -24,8 +27,19 @@ function createMainWindow() {
 	win.loadURL(`file://${__dirname}/index.html`);
 	win.on('closed', onClosed);
 
+	// https://github.com/electron/electron/blob/master/docs/api/web-contents.md#contentssendchannel-arg1-arg2-
+
 	return win;
 }
+
+ipcMain.on('vm-run', (event, o) => {
+	console.log("vm-run: ", o);
+	//event.returnValue = 'pong';
+	var result = vm.run(o.script);
+
+	event.sender.send('vm-result', result);
+	//event.sender.send('vm-result', vm.run(o.script));
+})
 
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {

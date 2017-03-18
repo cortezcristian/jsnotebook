@@ -31,7 +31,9 @@
     <!-- See:
     https://github.com/electron/electron/issues/254
     -->
-    <script>window.$ = window.jQuery = require('./components/jquery/dist/jquery.js');</script>
+    <script>
+		window.ipc = require('electron').ipcRenderer;
+		window.$ = window.jQuery = require('./components/jquery/dist/jquery.js');</script>
     <script>require('./components/bootstrap/dist/js/bootstrap.js');</script>
 		<!-- bower:js -->
 		<script src="components/angular/angular.js"></script>

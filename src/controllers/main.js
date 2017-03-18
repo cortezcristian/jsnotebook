@@ -25,6 +25,13 @@ angular
   .controller('MainCtrl', function($scope, $timeout, $location, $log,
     $q, toastr, $uibModal, $mdDialog){
 
+		ipc.on('vm-result', function(event, res) {
+			// http://stackoverflow.com/questions/36548228/when-to-use-remote-vs-ipcrenderer-ipcmain
+			/*do stuff*/
+			debugger;
+			$log.info("vm-result", res);
+		});
+
 
 		$scope.doc = {
 		 "data": [
@@ -40,6 +47,18 @@ angular
 				 "metadata": {},
 				 "source": [
 					"Download it from [jsnotebook](https://github.com/cortezcristian/jsnotebook/)"
+				 ]
+				},
+				{
+				 "rowtype": "code",
+				 "execution_count": 1,
+				 "metadata": {
+					"collapsed": false
+				 },
+				 "outputs": [],
+				 "source": [
+					"Math.random()",
+					"os.hostname()"
 				 ]
 				},
 				{
@@ -137,10 +156,14 @@ angular
 					// Interceptor
 					_editor.commands.addCommand({
 							name: "Execute",
-							exec: function() {
+							exec: function(ed) {
 								$log.log("ace: Execute");
+								debugger;
+								var script = ed.getValue();
+								ipc.send('vm-run', { script: script });
+								//$log.info(vm.run(script));
 							},
-							bindKey: {mac: "cmd-f", win: "ctrl-f"}
+							bindKey: {mac: "shift-enter", win: "shift-enter"}
 					})
 
 					// Events
