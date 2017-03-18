@@ -43,6 +43,7 @@ header h1 {
 
 .smartrow:hover {
 	border: 1px solid #ccc;
+	border-left: 3px solid #ccc;
 }
 
 .ace_editor { min-height: 20px; background: #ccc; }

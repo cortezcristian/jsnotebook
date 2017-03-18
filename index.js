@@ -3,6 +3,8 @@ const electron = require('electron');
 const {VM} = require('vm2');
 const vm = new VM();
 const ipcMain = require('electron').ipcMain;
+const shell = require('electron').shell;
+
 
 const app = electron.app;
 
@@ -39,7 +41,13 @@ ipcMain.on('vm-run', (event, o) => {
 
 	event.sender.send('vm-result', result);
 	//event.sender.send('vm-result', vm.run(o.script));
-})
+});
+
+ipcMain.on('element-clicked', (event, target) => {
+	console.log('element-clicked:', target);
+	//https://github.com/electron/electron/issues/1344
+	shell.openExternal(target);
+});
 
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {

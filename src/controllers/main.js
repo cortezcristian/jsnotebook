@@ -70,6 +70,15 @@ angular
 			$rootScope.doc.data[index].selected = true;
 		};
 
+		$rootScope.turnEditing = function(row, state){
+			var index = $rootScope.doc.data.indexOf(row);
+			$log.log("Editing: ", state, row);
+			if(index !== -1) {
+				// If edition is off, state false
+				$rootScope.doc.data[index].editing = state;
+			}
+		}
+
 		$rootScope.doc = {
 		 "data": [
 				{
@@ -109,6 +118,13 @@ angular
 					"var os = require('os')\n",
 					"os.hostname()"
 				 ]
+				},
+				{
+				 "rowtype": "markdown",
+				 "metadata": {},
+				 "source": [
+					"Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Maecenas sed diam eget risus varius blandit sit amet non magna. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
+				 ]
 				}
 			]
 		};
@@ -130,7 +146,8 @@ angular
     };
 
 	})
-	.directive('smartrow', function($log, $http, $compile, $parse, $templateCache){
+	.directive('smartrow', function($log, $http, $compile, $parse,
+			$rootScope, $templateCache){
 		 return {
 			 restrict: 'EA',
 			 template: "",
@@ -200,9 +217,14 @@ angular
 									case 'markdown':
 										//item['source'][0] = script;
 										$log.log("Exxx", item);
+										var ind = $rootScope.doc.data.indexOf(item);
 										//item.editing = false;
 										//scope.rowmodel.editing = false;
 										// do it globally? root scope
+										if(ind !== -1){
+											// Set Editing False
+											$rootScope.doc.data[ind].editing = false;
+										}
 									break;
 								}
 							},

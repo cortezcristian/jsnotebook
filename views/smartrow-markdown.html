@@ -1,5 +1,5 @@
-<div class="smartrow" ng-dblclick="rowmodel.editing=true">
-	<pre class="hidex"> {{rowmodel}} </pre>
+<div class="smartrow" ng-dblclick="turnEditing(rowmodel, true)">
+	<pre class="hidex"> {{rowmodel.editing}} {{rowmodel}} </pre>
 	<div ng-show="!rowmodel.editing" btf-markdown="rowmodel['source'][0]">
 	</div>
 	<div ng-show="rowmodel.editing">
