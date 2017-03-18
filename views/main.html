@@ -180,7 +180,9 @@
     <md-card class="page">
       <h1>Untitled document</h1>
 			<div ng-repeat="i in doc.data" class="smartrow-con">
-				<smartrow rowmodel="i">SMART</smartrow>
+				<smartrow rowmodel="i" class="smartrow-con"
+						ng-class="{ 'selected' : selected == $index }">
+						SMART</smartrow>
 			</div>
       <p>Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Maecenas sed diam eget risus varius blandit sit amet non magna. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
     </md-card>

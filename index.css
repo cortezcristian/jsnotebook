@@ -26,8 +26,18 @@ header h1 {
 	padding: 0;
 }
 
+.smartrow-con {
+
+}
+
+.smartrow-con.selected .smartrow {
+	border: 1px solid blue;
+	border-left: 3px solid blue;
+}
+
 .smartrow {
 	border: 1px solid white;
+	border-left: 3px solid white;
 	padding: 5px;
 }
 

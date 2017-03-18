@@ -23,15 +23,54 @@ angular
     };
   })
   .controller('MainCtrl', function($scope, $timeout, $location, $log,
-    $q, toastr, $uibModal, $mdDialog){
+    $q, toastr, $uibModal, $mdDialog, $rootScope, hotkeys){
 
 		ipc.on('vm-result', function(event, res) {
 			// http://stackoverflow.com/questions/36548228/when-to-use-remote-vs-ipcrenderer-ipcmain
 			$log.info("vm-result", res);
 		});
 
+		// https://github.com/chieffancypants/angular-hotkeys#binding-hotkeys-in-controllers
 
-		$scope.doc = {
+		// hotkeys.bindTo($scope).add
+		hotkeys.add({
+			combo: 'up',
+			description: 'Changes selected row to the one above',
+			callback: function() {
+				if($rootScope.selected > 0){
+					$rootScope.selected -= 1;
+				}
+			}
+		});
+		hotkeys.add({
+			combo: 'down',
+			description: 'Changes selected row to the one below',
+			callback: function() {
+				//$log.log($rootScope.selected, $rootScope.doc.data.length);
+				if($rootScope.selected < $rootScope.doc.data.length-1){
+					$rootScope.selected += 1;
+				}
+			}
+		});
+
+		$rootScope.selected = 0;
+
+		$rootScope.$watch('selected', function(){
+			$log.info('Moved: ', $rootScope.selected);
+			$rootScope.setSelectedRow($rootScope.selected);
+		});
+
+		$rootScope.setSelectedRow = function(index){
+			// Turn them off
+			$rootScope.doc.data.forEach(function(val, i){
+				$rootScope.doc.data[i].selected = false;
+			});
+
+			// Turn selected on
+			$rootScope.doc.data[index].selected = true;
+		};
+
+		$rootScope.doc = {
 		 "data": [
 				{
 				 "rowtype": "markdown",
