@@ -52,6 +52,17 @@ angular
 				}
 			}
 		});
+		hotkeys.add({
+			combo: 'enter',
+			description: 'Turns on edition for selected row',
+			callback: function() {
+				//$log.log($rootScope.selected, $rootScope.doc.data.length);
+				var row = $rootScope.doc.data[$rootScope.selected];
+				if(!row.editing){
+					$rootScope.turnEditing(row, true);
+				}
+			}
+		});
 
 		$rootScope.selected = 0;
 
@@ -90,8 +101,8 @@ angular
 				// If edition is off, state false
 				$rootScope.doc.data[index].editing = state;
 				if(state){
-					$log.log("Found editors: ", $(event.target, '[ace-ui]'));
 					/*
+					$log.log("Found editors: ", $(event.target, '[ace-ui]'));
 					$(event.target, '.ace_editor').each(function(v){
 						editor = ace.edit(this);
 						console.log(editor)
@@ -99,6 +110,7 @@ angular
 					})
 					*/
 					var editor = ace.edit('editor_'+index);
+					$log.info('Focusing editor:', 'editor_'+index);
 					editor.focus();
 				}
 			}
@@ -336,6 +348,19 @@ angular
 			 */
 		 };
 
+	 })
+	 .directive('onKeyEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.myEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
    });
 
 })();

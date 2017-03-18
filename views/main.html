@@ -182,7 +182,8 @@
 			<div ng-repeat="i in doc.data" class="smartrow-con">
 				<smartrow rowmodel="i" class="smartrow-con"
 						ng-dblclick="turnEditing(i, true, $event)"
-						ng-class="{ 'selected' : selected == $index }">
+						ng-class="{ 'selected' : selected == $index,
+							'editing' : i.editing }">
 						SMART</smartrow>
 			</div>
     </md-card>

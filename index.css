@@ -35,6 +35,11 @@ header h1 {
 	border-left: 3px solid blue;
 }
 
+.smartrow-con.selected.editing .smartrow {
+	border: 1px solid green;
+	border-left: 3px solid green;
+}
+
 .smartrow {
 	border: 1px solid white;
 	border-left: 3px solid white;
