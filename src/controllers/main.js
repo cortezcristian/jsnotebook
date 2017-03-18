@@ -25,13 +25,14 @@ angular
   .controller('MainCtrl', function($scope, $timeout, $location, $log,
     $q, toastr, $uibModal, $mdDialog){
 
+
 		$scope.doc = {
 		 "data": [
 				{
 				 "rowtype": "markdown",
 				 "metadata": {},
 				 "source": [
-					"# JS Notebook"
+					"# JS Notebook ```javascript var b ```"
 				 ]
 				},
 				{
@@ -83,6 +84,7 @@ angular
 			 link: function(scope, element, attrs){
 				// http://stackoverflow.com/questions/19501584/how-to-pass-in-templateurl-via-scope-variable-in-attribute
 
+
 				/*
 				scope.$watch(attrs.rowmodel, function (value) {
 					if (value) {
@@ -102,6 +104,11 @@ angular
 
 				function loadTemplate(item) {
 					var template =  templates[item.rowtype] || "";
+					switch(item.rowtype){
+						case "code":
+							configAce();
+						break;
+					}
 					if(template !== "") {
 
 					$http.get(template, { cache: $templateCache })
@@ -114,6 +121,38 @@ angular
 						});
 					}
 				}
+
+				function configAce(){
+					$log.log("ace: Config Ace");
+				scope.aceLoaded = function(_editor){
+					// Editor part
+					var _session = _editor.getSession();
+					var _renderer = _editor.renderer;
+
+					// Options
+					//_editor.setReadOnly(true);
+					_session.setUndoManager(new ace.UndoManager());
+					_renderer.setShowGutter(false);
+
+					// Interceptor
+					_editor.commands.addCommand({
+							name: "Execute",
+							exec: function() {
+								$log.log("ace: Execute");
+							},
+							bindKey: {mac: "cmd-f", win: "ctrl-f"}
+					})
+
+					// Events
+					_editor.on("changeSession", function(){
+						$log.log("ace: changeSession");
+					});
+					_session.on("change", function(){
+						$log.log("ace: change");
+					});
+				};
+
+			 }
 
 
 			 }
