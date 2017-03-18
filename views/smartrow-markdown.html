@@ -1,0 +1,10 @@
+<div class="smartrow">
+	<pre class="hide"> {{rowmodel.editing}} {{rowmodel}} </pre>
+	<div ng-show="!rowmodel.editing" btf-markdown="rowmodel['source'][0]">
+	</div>
+	<div ng-show="rowmodel.editing">
+		<div ui-ace="{ onLoad : aceLoaded, mode: 'markdown' }"
+			id="{{rowmodel.editor_id}}"
+			ng-model="rowmodel['source'][0]"></div>
+	</div>
+</div>
