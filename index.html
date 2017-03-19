@@ -19,15 +19,13 @@
 		<link rel="stylesheet" href="index.css">
 	</head>
 	<body ng-app="jsnotebook" layout="row" layout-fill>
-		<div class="xcontainer">
-			<header>
+		<header>
 				<h1>JSNotebook</h1>
-			</header>
-			<section class="xmain" layout="row" layout-fill>
-				<div layout="row" layout-fillx ui-view></div>
-			</section>
-			<footer></footer>
-		</div>
+		</header>
+		<section class="main" layout="row" layout-fill>
+			<div layout="row" layout-fill ui-view>
+			</div>
+		</section>
     <!-- See:
     https://github.com/electron/electron/issues/254
     -->

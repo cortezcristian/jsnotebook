@@ -28,7 +28,20 @@ angular
 		ipc.on('vm-result', function(event, res) {
 			// http://stackoverflow.com/questions/36548228/when-to-use-remote-vs-ipcrenderer-ipcmain
 			$log.info("vm-result", res);
+			var row = $rootScope.findByEditorId(res.item.editor_id);
+			if(row !== -1){
+				$rootScope.doc.data[row].stdout = res.stdout;
+			}
 		});
+
+		// Useful key codes
+		// Left: 37 Up: 38 Right: 39 Down: 40
+		$rootScope.triggerKeyDown = function (element, keyCode) {
+			$log.log("Triggering", keyCode, element);
+			var e = $.Event("keydown");
+			e.which = keyCode;
+			element.trigger(e);
+		};
 
 		// https://github.com/chieffancypants/angular-hotkeys#binding-hotkeys-in-controllers
 
@@ -55,10 +68,13 @@ angular
 		hotkeys.add({
 			combo: 'enter',
 			description: 'Turns on edition for selected row',
-			callback: function() {
+			callback: function(event, hotkey) {
+				event.preventDefault();
+				event.stopPropagation();
 				//$log.log($rootScope.selected, $rootScope.doc.data.length);
 				var row = $rootScope.doc.data[$rootScope.selected];
-				if(!row.editing){
+				//TODO: Or editor not focused
+				if(!row.editing || 1){
 					$rootScope.turnEditing(row, true);
 				}
 			}
@@ -111,9 +127,25 @@ angular
 					*/
 					var editor = ace.edit('editor_'+index);
 					$log.info('Focusing editor:', 'editor_'+index);
-					editor.focus();
+					$timeout(function(){
+						if(!editor.isFocused()){
+							editor.focus();
+						}
+					},1)
 				}
 			}
+		}
+
+		// Prepare Data
+		$rootScope.findByEditorId = function(ed_id){
+			var index = -1;
+			angular.forEach($rootScope.doc.data, function(v,i){
+				if(v.editor_id == ed_id){
+					index = i;
+				}
+			});
+
+			return index;
 		}
 
 		$rootScope.doc = {
@@ -169,6 +201,8 @@ angular
 		// Prepare Data
 		angular.forEach($rootScope.doc.data, function(v,i){
 				$rootScope.doc.data[i].editor_id = 'editor_'+i;
+				$rootScope.doc.data[i].stdout = '';
+				$rootScope.doc.data[i].stderr = '';
 		});
 
 	  $scope.settings = {
@@ -240,6 +274,10 @@ angular
 					var _session = _editor.getSession();
 					var _renderer = _editor.renderer;
 
+					// https://github.com/angular-ui/ui-ace/issues/64
+					//$rootScope.editor = _editor;
+					scope.aceEditor = _editor;
+
 					// Options
 					//_editor.setReadOnly(true);
 					_session.setUndoManager(new ace.UndoManager());
@@ -248,17 +286,24 @@ angular
 
 					// Interceptor
 					_editor.commands.addCommand({
-							name: "Execute",
+							name: "saveandrun",
 							exec: function(ed) {
 								$log.log("ace: Execute", item.rowtype);
 								var script = ed.getValue();
 								switch (item.rowtype) {
 									case 'code':
-										ipc.send('vm-run', { script: script });
+										ipc.send('vm-run', { script: script, item: item });
+										$timeout(function(){
+										$log.log("requesting keydown...")
+										ipc.send('request-keydown');
+										},5);
+										ed.execCommand("turnoffedition");
 									break;
 									case 'markdown':
 										//item['source'][0] = script;
-										$log.log("Exxx", item);
+										$log.log("Saving md:", item);
+										ed.execCommand("turnoffedition");
+										/*
 										var ind = $rootScope.doc.data.indexOf(item);
 										//item.editing = false;
 										//scope.rowmodel.editing = false;
@@ -267,8 +312,22 @@ angular
 											// Set Editing False
 											$rootScope.doc.data[ind].editing = false;
 											// Emit Change
-											ed.session._emit('change')
+											//ed.session._emit('change')
+											// enter selecciona todo;
+											// otro enter borra todo;
+											// stop propagation
+											ed.blur();
+											$log.log(scope.aceEditor);
+											$timeout(function(){
+											$rootScope.doc.data[ind].editing = false;
+											scope.aceEditor.session._emit('change')
+											},0)
+											/*
+											var newValue = scope.aceEditor.getValue();
+											$log.log("new Value", newValue);
+											scope.aceEditor.setValue(newValue);
 										}
+											*/
 									break;
 								}
 							},
@@ -277,12 +336,13 @@ angular
 
 					// Interceptor
 					_editor.commands.addCommand({
-							name: "Turn Edition Off",
+							name: "turnoffedition",
 							exec: function(ed) {
 								$log.log("ace: Esc", item.rowtype);
 								$log.log("Esc item:", item);
 								var ind = $rootScope.doc.data.indexOf(item);
 								if(ind !== -1){
+									$log.log("Set editing false: ", ind)
 									// Set Editing False
 									$rootScope.doc.data[ind].editing = false;
 									// Emit Change
@@ -290,9 +350,18 @@ angular
 									//ed.renderer.updateFull();
 									//ed.setValue(ed.getValue(), 1);
 									//var script = ed.getValue();
+									ed.blur();
 									$timeout(function(){
-										ed.session._emit("change");
-									}, 0)
+										$rootScope.doc.data[ind].editing = false;
+										//$rootScope.triggerKeyDown($('body'), 40);
+										try{
+										scope.aceEditor.session._emit('change')
+										}catch(e){
+											$log.log("Error...");
+											$rootScope.doc.data[ind].editing = false;
+											scope.$apply();
+										}
+									},0)
 								}
 							},
 							bindKey: {mac: "esc", win: "esc"}

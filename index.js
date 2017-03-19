@@ -38,8 +38,9 @@ ipcMain.on('vm-run', (event, o) => {
 	console.log("vm-run: ", o);
 	//event.returnValue = 'pong';
 	var result = vm.run(o.script);
+	o.stdout = result;
 
-	event.sender.send('vm-result', result);
+	event.sender.send('vm-result', o);
 	//event.sender.send('vm-result', vm.run(o.script));
 });
 
@@ -47,6 +48,15 @@ ipcMain.on('element-clicked', (event, target) => {
 	console.log('element-clicked:', target);
 	//https://github.com/electron/electron/issues/1344
 	shell.openExternal(target);
+});
+
+ipcMain.on('request-keydown', (event, target) => {
+	console.log('request-keydown', mainWindow.webContents);
+	console.log(">>>>>>", mainWindow.webContents.sendInputEvent)
+	mainWindow.webContents.sendInputEvent({
+		type: "keyDown",
+		keyCode: '40'
+	});
 });
 
 app.on('window-all-closed', () => {
