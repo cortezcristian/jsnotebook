@@ -38,8 +38,9 @@ ipcMain.on('vm-run', (event, o) => {
 	console.log("vm-run: ", o);
 	//event.returnValue = 'pong';
 	var result = vm.run(o.script);
+	o.stdout = result;
 
-	event.sender.send('vm-result', result);
+	event.sender.send('vm-result', o);
 	//event.sender.send('vm-result', vm.run(o.script));
 });
 

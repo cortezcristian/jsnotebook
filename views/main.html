@@ -57,14 +57,12 @@
             </button>
             <md-menu-content>
               <md-menu-item class="md-indent">
-                <md-icon md-svg-icon="undo"></md-icon>
                 <md-button ng-click="ctrl.sampleAction('undo', $event)">
                   Undo
                   <span class="md-alt-text">{{ 'M-Z' | keyboardShortcut }}</span>
                 </md-button>
               </md-menu-item>
               <md-menu-item class="md-indent">
-                <md-icon md-svg-icon="redo"></md-icon>
                 <md-button ng-click="ctrl.sampleAction('redo', $event)">
                   Redo
                   <span class="md-alt-text">{{ 'M-Y' | keyboardShortcut }}</span>
@@ -72,21 +70,18 @@
               </md-menu-item>
               <md-menu-divider></md-menu-divider>
               <md-menu-item class="md-indent">
-                <md-icon md-svg-icon="content-cut"></md-icon>
                 <md-button ng-click="ctrl.sampleAction('cut', $event)">
                   Cut
                   <span class="md-alt-text">{{ 'M-X' | keyboardShortcut }}</span>
                 </md-button>
               </md-menu-item>
               <md-menu-item class="md-indent">
-                <md-icon md-svg-icon="content-copy"></md-icon>
                 <md-button ng-click="ctrl.sampleAction('copy', $event)">
                   Copy
                   <span class="md-alt-text">{{ 'M-C' | keyboardShortcut }}</span>
                 </md-button>
               </md-menu-item>
               <md-menu-item class="md-indent">
-                <md-icon md-svg-icon="content-paste"></md-icon>
                 <md-button ng-click="ctrl.sampleAction('paste', $event)">
                   Paste
                   <span class="md-alt-text">{{ 'M-P' | keyboardShortcut }}</span>
