@@ -73,7 +73,8 @@ angular
 				event.stopPropagation();
 				//$log.log($rootScope.selected, $rootScope.doc.data.length);
 				var row = $rootScope.doc.data[$rootScope.selected];
-				if(!row.editing){
+				//TODO: Or editor not focused
+				if(!row.editing || 1){
 					$rootScope.turnEditing(row, true);
 				}
 			}
