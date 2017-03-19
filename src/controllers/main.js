@@ -31,8 +31,21 @@ angular
 			var row = $rootScope.findByEditorId(res.item.editor_id);
 			if(row !== -1){
 				$rootScope.doc.data[row].stdout = res.stdout;
+				$rootScope.doc.data[row].stderr = res.stderr;
 			}
 		});
+
+		// Files Service
+		$rootScope.fileMngr = {};
+		$rootScope.fileMngr.open = function(){
+			$log.log('request-openfile');
+			ipc.send('request-openfile');
+		};
+		$rootScope.fileMngr.opened = function(event, res){
+			$log.log('File Opened:', res);
+			$rootScope.doc = JSON.parse(res);
+		};
+		ipc.on('openfile-complete', $rootScope.fileMngr.opened);
 
 		// Useful key codes
 		// Left: 37 Up: 38 Right: 39 Down: 40
@@ -136,7 +149,7 @@ angular
 			}
 		}
 
-		// Prepare Data
+		// Find By Editor Id
 		$rootScope.findByEditorId = function(ed_id){
 			var index = -1;
 			angular.forEach($rootScope.doc.data, function(v,i){
@@ -154,7 +167,7 @@ angular
 				 "rowtype": "markdown",
 				 "metadata": {},
 				 "source": [
-					"# JS Notebook ```javascript var b ```"
+					"# JS Notebook \n- Better \n- Faster \n- 100% NodeJS"
 				 ]
 				},
 				{

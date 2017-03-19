@@ -1,7 +1,7 @@
 {
   "name": "jsnotebook",
   "productName": "Jsnotebook",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "My super app",
   "license": "MIT",
   "repository": "cortezcristian/jsnotebook",
@@ -29,6 +29,7 @@
   ],
   "dependencies": {
     "electron-debug": "^1.0.0",
+    "graceful-fs": "^4.1.11",
     "vm2": "^3.2.0"
   },
   "devDependencies": {
