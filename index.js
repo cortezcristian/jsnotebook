@@ -55,7 +55,7 @@ ipcMain.on('request-keydown', (event, target) => {
 	console.log(">>>>>>", mainWindow.webContents.sendInputEvent)
 	mainWindow.webContents.sendInputEvent({
 		type: "keyDown",
-		keyCode: '\u0040'
+		keyCode: '40'
 	});
 });
 

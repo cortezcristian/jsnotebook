@@ -126,7 +126,11 @@ angular
 					*/
 					var editor = ace.edit('editor_'+index);
 					$log.info('Focusing editor:', 'editor_'+index);
-					editor.focus();
+					$timeout(function(){
+						if(!editor.isFocused()){
+							editor.focus();
+						}
+					},1)
 				}
 			}
 		}
@@ -288,6 +292,10 @@ angular
 								switch (item.rowtype) {
 									case 'code':
 										ipc.send('vm-run', { script: script, item: item });
+										$timeout(function(){
+										$log.log("requesting keydown...")
+										ipc.send('request-keydown');
+										},5);
 										ed.execCommand("turnoffedition");
 									break;
 									case 'markdown':
@@ -333,6 +341,7 @@ angular
 								$log.log("Esc item:", item);
 								var ind = $rootScope.doc.data.indexOf(item);
 								if(ind !== -1){
+									$log.log("Set editing false: ", ind)
 									// Set Editing False
 									$rootScope.doc.data[ind].editing = false;
 									// Emit Change
@@ -342,13 +351,15 @@ angular
 									//var script = ed.getValue();
 									ed.blur();
 									$timeout(function(){
-									$log.log("requesting keydown...")
-									ipc.send('request-keydown');
-									},3);
-									$timeout(function(){
-									$rootScope.doc.data[ind].editing = false;
-									//$rootScope.triggerKeyDown($('body'), 40);
-									scope.aceEditor.session._emit('change')
+										$rootScope.doc.data[ind].editing = false;
+										//$rootScope.triggerKeyDown($('body'), 40);
+										try{
+										scope.aceEditor.session._emit('change')
+										}catch(e){
+											$log.log("Error...");
+											$rootScope.doc.data[ind].editing = false;
+											scope.$apply();
+										}
 									},0)
 								}
 							},
