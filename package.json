@@ -29,6 +29,7 @@
   ],
   "dependencies": {
     "electron-debug": "^1.0.0",
+    "graceful-fs": "^4.1.11",
     "vm2": "^3.2.0"
   },
   "devDependencies": {

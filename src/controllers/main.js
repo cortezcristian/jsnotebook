@@ -35,6 +35,18 @@ angular
 			}
 		});
 
+		// Files Service
+		$rootScope.fileMngr = {};
+		$rootScope.fileMngr.open = function(){
+			$log.log('request-openfile');
+			ipc.send('request-openfile');
+		};
+		$rootScope.fileMngr.opened = function(event, res){
+			$log.log('File Opened:', res);
+			$rootScope.doc = JSON.parse(res);
+		};
+		ipc.on('openfile-complete', $rootScope.fileMngr.opened);
+
 		// Useful key codes
 		// Left: 37 Up: 38 Right: 39 Down: 40
 		$rootScope.triggerKeyDown = function (element, keyCode) {

@@ -4,7 +4,9 @@ const {VM} = require('vm2');
 const vm = new VM();
 const ipcMain = require('electron').ipcMain;
 const shell = require('electron').shell;
-
+const {dialog} = require('electron');
+// https://github.com/szwacz/fs-jetpack
+const gfs = require('graceful-fs');
 
 const app = electron.app;
 
@@ -69,7 +71,16 @@ try {
 		event.sender.send('vm-result', o);
 }
 */
+});
 
+ipcMain.on('request-openfile', (event, target) => {
+	// https://github.com/electron/electron/blob/master/docs/api/dialog.md
+	dialog.showOpenDialog({properties: ['openFile']}, function(files){
+		console.log("files:", files);
+		var file = gfs.readFileSync(files[0]);
+		console.log(file.toString());
+		event.sender.send('openfile-complete', file.toString());
+	});
 });
 
 ipcMain.on('element-clicked', (event, target) => {
@@ -79,8 +90,9 @@ ipcMain.on('element-clicked', (event, target) => {
 });
 
 ipcMain.on('request-keydown', (event, target) => {
-	console.log('request-keydown', mainWindow.webContents);
-	console.log(">>>>>>", mainWindow.webContents.sendInputEvent)
+	console.log('request-keydown');
+	//console.log('request-keydown', mainWindow.webContents);
+	//console.log(">>>>>>", mainWindow.webContents.sendInputEvent)
 	mainWindow.webContents.sendInputEvent({
 		type: "keyDown",
 		keyCode: '40'
