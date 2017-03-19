@@ -34,6 +34,15 @@ angular
 			}
 		});
 
+		// Useful key codes
+		// Left: 37 Up: 38 Right: 39 Down: 40
+		$rootScope.triggerKeyDown = function (element, keyCode) {
+			$log.log("Triggering", keyCode, element);
+			var e = $.Event("keydown");
+			e.which = keyCode;
+			element.trigger(e);
+		};
+
 		// https://github.com/chieffancypants/angular-hotkeys#binding-hotkeys-in-controllers
 
 		// hotkeys.bindTo($scope).add
@@ -333,7 +342,12 @@ angular
 									//var script = ed.getValue();
 									ed.blur();
 									$timeout(function(){
+									$log.log("requesting keydown...")
+									ipc.send('request-keydown');
+									},3);
+									$timeout(function(){
 									$rootScope.doc.data[ind].editing = false;
+									//$rootScope.triggerKeyDown($('body'), 40);
 									scope.aceEditor.session._emit('change')
 									},0)
 								}

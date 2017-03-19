@@ -50,6 +50,15 @@ ipcMain.on('element-clicked', (event, target) => {
 	shell.openExternal(target);
 });
 
+ipcMain.on('request-keydown', (event, target) => {
+	console.log('request-keydown', mainWindow.webContents);
+	console.log(">>>>>>", mainWindow.webContents.sendInputEvent)
+	mainWindow.webContents.sendInputEvent({
+		type: "keyDown",
+		keyCode: '\u0040'
+	});
+});
+
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {
 		app.quit();
