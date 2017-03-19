@@ -4,7 +4,9 @@
 		id="{{rowmodel.editor_id}}"
 		ng-model="rowmodel['source'][0]"></div>
 
-	<div ng-show="rowmodel.stdout">
-		{{rowmodel.stdout}}
-	</div>
+	<pre class="stdout" ng-show="rowmodel.stdout">{{rowmodel.stdout}}</pre>
+
+	<pre class="stderr" ng-show="rowmodel.stderr">{{rowmodel.stderr}}</pre>
+
+
 </div>

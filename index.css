@@ -82,3 +82,10 @@ header h1 {
 .menuBardemoBasicUsage .page p {
   line-height: 1.6rem; }
 
+.stdout, .stderr {
+}
+
+.stderr {
+	color: red;
+}
+

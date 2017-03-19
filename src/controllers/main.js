@@ -31,6 +31,7 @@ angular
 			var row = $rootScope.findByEditorId(res.item.editor_id);
 			if(row !== -1){
 				$rootScope.doc.data[row].stdout = res.stdout;
+				$rootScope.doc.data[row].stderr = res.stderr;
 			}
 		});
 
@@ -136,7 +137,7 @@ angular
 			}
 		}
 
-		// Prepare Data
+		// Find By Editor Id
 		$rootScope.findByEditorId = function(ed_id){
 			var index = -1;
 			angular.forEach($rootScope.doc.data, function(v,i){
@@ -154,7 +155,7 @@ angular
 				 "rowtype": "markdown",
 				 "metadata": {},
 				 "source": [
-					"# JS Notebook ```javascript var b ```"
+					"# JS Notebook \n- Better \n- Faster \n- 100% NodeJS"
 				 ]
 				},
 				{
