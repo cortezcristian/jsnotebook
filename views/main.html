@@ -1,6 +1,6 @@
-<div class="menuBardemoBasicUsage" layout="column" flex layout-fill ng-cloak>
+<div class="menuBardemoBasicUsage" ng-cloak layout="column" flex layout-fill>
   <md-toolbar class="md-menu-toolbar" style="padding-bottom:10px">
-    <div layout="row" class="menu-con">
+    <div class="menu-con" layout="row">
       <md-toolbar-filler layout layout-align="center center" style="background-color: rgb(63, 181, 68);">
 				<i class="ion-social-nodejs" style="font-size:30px"></i>
       </md-toolbar-filler>
@@ -38,7 +38,7 @@
                 </md-button>
               </md-menu-item>
               <md-menu-item>
-                <md-button disabled="disabled" ng-click="ctrl.sampleAction('Rename', $event)">
+                <md-button ng-click="ctrl.sampleAction('Rename', $event)" disabled="disabled">
                   Rename
                 </md-button>
               </md-menu-item>
@@ -101,24 +101,24 @@
               View
             </button>
             <md-menu-content>
-              <md-menu-item type="checkbox" ng-model="ctrl.settings.printLayout">Print layout</md-menu-item>
+              <md-menu-item ng-model="ctrl.settings.printLayout" type="checkbox">Print layout</md-menu-item>
               <md-menu-item class="md-indent">
                 <md-menu>
                   <md-button ng-click="$mdMenu.open()">Mode</md-button>
                   <md-menu-content width="3">
-                    <md-menu-item type="radio" ng-model="ctrl.settings.presentationMode" value="'presentation'">Presentation</md-menu-item>
-                    <md-menu-item type="radio" ng-model="ctrl.settings.presentationMode" value="'edit'">Edit</md-menu-item>
-                    <md-menu-item type="radio" ng-model="ctrl.settings.presentationMode" value="'modifiable'">Modifiable</md-menu-item>
+                    <md-menu-item ng-model="ctrl.settings.presentationMode" type="radio" value="'presentation'">Presentation</md-menu-item>
+                    <md-menu-item ng-model="ctrl.settings.presentationMode" type="radio" value="'edit'">Edit</md-menu-item>
+                    <md-menu-item ng-model="ctrl.settings.presentationMode" type="radio" value="'modifiable'">Modifiable</md-menu-item>
                   </md-menu-content>
                 </md-menu>
               </md-menu-item>
               <md-menu-divider></md-menu-divider>
-              <md-menu-item type="checkbox" ng-model="ctrl.settings.showRuler">Show ruler</md-menu-item>
-              <md-menu-item type="checkbox" ng-model="ctrl.settings.showEquationToolbar">Show equation toolbar</md-menu-item>
-              <md-menu-item type="checkbox" ng-model="ctrl.settings.showSpellingSuggestions">Show spelling suggestions</md-menu-item>
+              <md-menu-item ng-model="ctrl.settings.showRuler" type="checkbox">Show ruler</md-menu-item>
+              <md-menu-item ng-model="ctrl.settings.showEquationToolbar" type="checkbox">Show equation toolbar</md-menu-item>
+              <md-menu-item ng-model="ctrl.settings.showSpellingSuggestions" type="checkbox">Show spelling suggestions</md-menu-item>
               <md-menu-divider></md-menu-divider>
-              <md-menu-item type="checkbox" ng-model="ctrl.settings.compactControls">Compact controls</md-menu-item>
-              <md-menu-item type="checkbox" ng-model="ctrl.settings.fullScreen">Full screen</md-menu-item>
+              <md-menu-item ng-model="ctrl.settings.compactControls" type="checkbox">Compact controls</md-menu-item>
+              <md-menu-item ng-model="ctrl.settings.fullScreen" type="checkbox">Full screen</md-menu-item>
             </md-menu-content>
           </md-menu>
           <md-menu>
@@ -174,11 +174,9 @@
   <md-content class="page-container">
     <md-card class="page">
       <h1>Untitled document</h1>
-			<div ng-repeat="i in doc.data" class="smartrow-con">
-				<smartrow rowmodel="i" class="smartrow-con"
-						ng-dblclick="turnEditing(i, true, $event)"
-						ng-class="{ 'selected' : selected == $index,
-							'editing' : i.editing }">
+			<div class="smartrow-con" ng-repeat="i in doc.data">
+				<smartrow class="smartrow-con" ng-class="{ 'selected' : selected == $index,
+							'editing' : i.editing }" ng-dblclick="turnEditing(i, true, $event)" rowmodel="i">
 						SMART</smartrow>
 			</div>
     </md-card>
