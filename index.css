@@ -59,7 +59,7 @@ header h1 {
 .menuBardemoBasicUsage {}
 
 .menuBardemoBasicUsage .menu-con {
-  min-height: 96px;
+  min-height: 80px;
   border-bottom: 1px solid #ccc;
   background: white;
 }
@@ -91,6 +91,16 @@ header h1 {
   border-radius: 0 0 .28571429rem .28571429rem;
 }
 
+md-select {
+  margin: 0px;
+}
+
+.toolbar {
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  background: linear-gradient(to bottom, #f5f5f5 0%, #eee 100%);
+}
+
 .stdout,
 .stderr {}
 
@@ -101,6 +111,7 @@ header h1 {
 .page {
   /* Medida en google doc*/
   max-width: 790px;
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15), none;
   /* width: 790px; */
 }
 

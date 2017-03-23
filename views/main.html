@@ -1,5 +1,5 @@
 <div class="menuBardemoBasicUsage" ng-cloak layout="column" flex layout-fill>
-  <md-toolbar class="md-menu-toolbar">
+  <md-toolbar class="md-menu-toolbar" /*style="padding-bottom:10px*/">
     <div class="menu-con" layout="row">
       <md-toolbar-filler layout layout-align="center center" style="background-color: rgb(63, 181, 68);">
         <i class="ion-social-nodejs" style="font-size:30px"></i>
@@ -181,6 +181,37 @@
         </md-menu-bar>
       </div>
     </div>
+    <md-menu-bar class="toolbar">
+      <md-menu>
+        <button>
+          File
+        </button>
+      </md-menu>
+      <md-menu>
+        <md-select ng-model="addRowType" placeholder="add up row" class="md-no-underline">
+          <md-option value="markdown">Markdown</md-option>
+          <md-option value="nodejs">NodeJS</md-option>
+        </md-select>
+      </md-menu>
+      <md-menu>
+        <md-button ng-click="$mdMenu.open()" class="md-icon-button" aria-label="Settings">
+          <md-icon md-svg-icon="img/icons/plus-circle.svg"></md-icon>
+        </md-button>
+        <md-menu-content>
+          <md-menu-item>
+            <md-button ng-click="ctrl.sampleAction('bold', $event)">
+              Markdown
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="ctrl.sampleAction('italic', $event)">
+              NodeJS
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </md-menu-bar>
+
   </md-toolbar>
 
   <md-content class="page-container">
