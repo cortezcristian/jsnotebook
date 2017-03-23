@@ -1,8 +1,8 @@
 <div class="menuBardemoBasicUsage" ng-cloak layout="column" flex layout-fill>
-  <md-toolbar class="md-menu-toolbar" style="padding-bottom:10px">
+  <md-toolbar class="md-menu-toolbar">
     <div class="menu-con" layout="row">
       <md-toolbar-filler layout layout-align="center center" style="background-color: rgb(63, 181, 68);">
-				<i class="ion-social-nodejs" style="font-size:30px"></i>
+        <i class="ion-social-nodejs" style="font-size:30px"></i>
       </md-toolbar-filler>
 
       <div>
@@ -23,11 +23,21 @@
                 <md-menu>
                   <md-button ng-click="$mdMenu.open()">New</md-button>
                   <md-menu-content>
-                    <md-menu-item><md-button ng-click="ctrl.sampleAction('New Document', $event)">Document</md-button></md-menu-item>
-                    <md-menu-item><md-button ng-click="ctrl.sampleAction('New Spreadsheet', $event)">Spreadsheet</md-button></md-menu-item>
-                    <md-menu-item><md-button ng-click="ctrl.sampleAction('New Presentation', $event)">Presentation</md-button></md-menu-item>
-                    <md-menu-item><md-button ng-click="ctrl.sampleAction('New Form', $event)">Form</md-button></md-menu-item>
-                    <md-menu-item><md-button ng-click="ctrl.sampleAction('New Drawing', $event)">Drawing</md-button></md-menu-item>
+                    <md-menu-item>
+                      <md-button ng-click="ctrl.sampleAction('New Document', $event)">Document</md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <md-button ng-click="ctrl.sampleAction('New Spreadsheet', $event)">Spreadsheet</md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <md-button ng-click="ctrl.sampleAction('New Presentation', $event)">Presentation</md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <md-button ng-click="ctrl.sampleAction('New Form', $event)">Form</md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <md-button ng-click="ctrl.sampleAction('New Drawing', $event)">Drawing</md-button>
+                    </md-menu-item>
                   </md-menu-content>
                 </md-menu>
               </md-menu-item>
@@ -163,7 +173,9 @@
                 </md-button>
               </md-menu-item>
               <md-menu-divider></md-menu-divider>
-              <md-menu-item><md-button ng-click="ctrl.toggleSetting('clearFormatting')">Clear Formatting</md-button></md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="ctrl.toggleSetting('clearFormatting')">Clear Formatting</md-button>
+              </md-menu-item>
             </md-menu-content>
           </md-menu>
         </md-menu-bar>
@@ -174,11 +186,11 @@
   <md-content class="page-container">
     <md-card class="page">
       <h1>Untitled document</h1>
-			<div class="smartrow-con" ng-repeat="i in doc.data">
-				<smartrow class="smartrow-con" ng-class="{ 'selected' : selected == $index,
+      <div class="smartrow-con" ng-repeat="i in doc.data">
+        <smartrow class="smartrow-con" ng-class="{ 'selected' : selected == $index,
 							'editing' : i.editing }" ng-dblclick="turnEditing(i, true, $event)" rowmodel="i">
-						SMART</smartrow>
-			</div>
+          SMART</smartrow>
+      </div>
     </md-card>
   </md-content>
 </div>
