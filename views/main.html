@@ -209,12 +209,9 @@
               </md-menu-item>-->
             </md-menu-content>
           </md-menu>
-        </md-menu-bar>
-      </div>
-    </div>
-    <md-menu-bar class="toolbar">
-      <!--file managger -->
-      <!--
+
+          <!--file managger -->
+          <!--
       <md-menu>
         <md-button ng-click="fileMngr.new()" class="md-icon-button" aria-label="Settings">
           <md-icon class="ion-android-document"></md-icon>
@@ -226,31 +223,31 @@
         </md-button>
       </md-menu>
       -->
-      <md-menu>
-        <md-button ng-click="fileMngr.save()" class="md-icon-button" aria-label="Settings">
-          <md-icon class="fa fa-floppy-o"></md-icon>
-        </md-button>
-      </md-menu>
+          <md-menu>
+            <md-button ng-click="fileMngr.save()" class="md-icon-button" aria-label="Settings">
+              <md-icon class="fa fa-floppy-o"></md-icon>
+            </md-button>
+          </md-menu>
 
-      <!-- edit -->
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button right" aria-label="Settings">
-          <md-icon class="ion-scissors" aria-hidden="true"></md-icon>
-        </md-button>
-      </md-menu>
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button center" aria-label="Settings">
-          <md-icon class="ion-ios-copy-outline"></md-icon>
-        </md-button>
-      </md-menu>
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button left" aria-label="Settings">
-          <md-icon class="ion-android-clipboard"></md-icon>
-        </md-button>
-      </md-menu>
+          <!-- edit -->
+          <md-menu>
+            <md-button ng-click="" class="md-icon-button right" aria-label="Settings">
+              <md-icon class="ion-scissors" aria-hidden="true"></md-icon>
+            </md-button>
+          </md-menu>
+          <md-menu>
+            <md-button ng-click="" class="md-icon-button center" aria-label="Settings">
+              <md-icon class="ion-ios-copy-outline"></md-icon>
+            </md-button>
+          </md-menu>
+          <md-menu>
+            <md-button ng-click="" class="md-icon-button left" aria-label="Settings">
+              <md-icon class="ion-android-clipboard"></md-icon>
+            </md-button>
+          </md-menu>
 
-      <!--text edit -->
-      <!--
+          <!--text edit -->
+          <!--
       <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
           <md-icon class="fa fa-header"></md-icon>
@@ -287,59 +284,56 @@
         </md-button>
       </md-menu>
       -->
-      <!-- row -->
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button right" aria-label="Settings">
-          <md-icon class="fa fa-arrow-down"></md-icon>
-        </md-button>
-      </md-menu>
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button center" aria-label="Settings">
-          <md-icon class="fa fa-arrow-down"></md-icon>
-        </md-button>
-      </md-menu>
-      <md-menu>
-        <md-button ng-click="$mdMenu.open()" class="md-icon-button left" aria-label="Settings">
-          <md-icon class="ion-plus-circled"></md-icon>
-        </md-button>
-        <md-menu-content>
-          <md-menu-item>
-            <md-button ng-click="markdown">
-              Markdown
+          <!-- row -->
+          <md-menu>
+            <md-button ng-click="" class="md-icon-button right" aria-label="Settings">
+              <md-icon class="fa fa-arrow-down"></md-icon>
             </md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button ng-click="code">
-              NodeJS
+          </md-menu>
+          <md-menu>
+            <md-button ng-click="" class="md-icon-button center" aria-label="Settings">
+              <md-icon class="fa fa-arrow-down"></md-icon>
             </md-button>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
-      <!-- run code-->
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button right" aria-label="Settings">
-          <md-icon class="ion-play"></md-icon>
-        </md-button>
-      </md-menu>
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button left" aria-label="Settings">
-          <md-icon class="ion-stop"></md-icon>
-        </md-button>
-      </md-menu>
+          </md-menu>
+          <md-menu>
+            <md-button ng-click="$mdMenu.open()" class="md-icon-button left" aria-label="Settings">
+              <md-icon class="ion-plus-circled"></md-icon>
+            </md-button>
+            <md-menu-content>
+              <md-menu-item>
+                <md-button ng-click="markdown">
+                  Markdown
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="code">
+                  NodeJS
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+          <!-- run code-->
+          <md-menu>
+            <md-button ng-click="" class="md-icon-button right" aria-label="Settings">
+              <md-icon class="ion-play"></md-icon>
+            </md-button>
+          </md-menu>
+          <md-menu>
+            <md-button ng-click="" class="md-icon-button left" aria-label="Settings">
+              <md-icon class="ion-stop"></md-icon>
+            </md-button>
+          </md-menu>
 
-      <!-- other -->
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/arrow-double-up.svg"></md-icon>
-        </md-button>
-      </md-menu>
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon class="ion-android-expand"></md-icon>
-        </md-button>
-      </md-menu>
+          <!-- other -->
+          <md-menu>
+            <md-button ng-click="" class="md-icon-button" aria-label="Settings">
+              <md-icon class="{{ fullScreen ? ion-android-contract : ion-android-expand}}"></md-icon>
+            </md-button>
+          </md-menu>
 
-    </md-menu-bar>
+        </md-menu-bar>
+      </div>
+    </div>
   </md-toolbar>
 
   <md-content class="page-container">
