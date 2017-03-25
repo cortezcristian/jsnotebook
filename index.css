@@ -59,7 +59,7 @@ header h1 {
 .menuBardemoBasicUsage {}
 
 .menuBardemoBasicUsage .menu-con {
-  min-height: 80px;
+  min-height: 96px;
   border-bottom: 1px solid #ccc;
   background: white;
 }
