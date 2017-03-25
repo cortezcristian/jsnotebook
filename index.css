@@ -91,14 +91,45 @@ header h1 {
   border-radius: 0 0 .28571429rem .28571429rem;
 }
 
-md-select {
-  margin: 0px;
+md-content {
+  background-color: #eee;
+}
+
+md-menu-bar {
+  height: 36px;
 }
 
 .toolbar {
   border-top: 1px solid #d9d9d9;
   border-bottom: 1px solid #d9d9d9;
   background: linear-gradient(to bottom, #f5f5f5 0%, #eee 100%);
+}
+
+.toolbar .md-button.md-icon-button {
+  margin: 0 8px;
+  height: 22px;
+  min-width: 12px;
+  padding: 0px;
+  width: 22px;
+}
+
+.toolbar .md-button.md-icon-button.right {
+  margin: 0px 0px 0px 8px;
+}
+
+.toolbar .md-button.md-icon-button.center {
+  margin: 0px 4px 0px 4px;
+}
+
+.toolbar .md-button.md-icon-button.left {
+  margin: 0px 8px 0px 0px;
+}
+
+md-icon {
+  height: auto;
+  width: auto;
+  min-height: 12px;
+  max-width: 24px,
 }
 
 .stdout,
@@ -113,21 +144,4 @@ md-select {
   max-width: 790px;
   box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15), none;
   /* width: 790px; */
-}
-
-md-content {
-  background-color: #eee;
-}
-
-md-menu-bar {
-  height: 42px;
-}
-
-.btn-group .md-button.md-icon-button {}
-
-md-icon {
-  height: auto;
-  width: auto;
-  min-height: 12px;
-  max-width: 24px,
 }
