@@ -2,7 +2,7 @@
   <md-toolbar class="md-menu-toolbar" /*style="padding-bottom:10px*/">
     <div class="menu-con" layout="row">
       <md-toolbar-filler layout layout-align="center center" style="background-color: rgb(63, 181, 68);">
-        <i class="ion-social-nodejs" style="font-size:30px"></i>
+        <i class="ion-social-nodejs" style="font-size:50px"></i>
       </md-toolbar-filler>
 
       <div>
@@ -56,211 +56,275 @@
             </button>
             <md-menu-content>
               <md-menu-item class="md-indent">
-                <md-icon md-svg-icon=""></md-icon>
-                <md-button ng-click="">
+                <md-icon class="ion-ios-undo"></md-icon>
+                <md-button ng-click="ctrl.sampleAction('undo', $event)">
                   Undo
                   <span class="md-alt-text">{{ 'M-Z' | keyboardShortcut }}</span>
                 </md-button>
               </md-menu-item>
               <md-menu-item class="md-indent">
-                <md-icon md-svg-icon=""></md-icon>
-                <md-button ng-click="">
+                <md-icon class="ion-ios-redo"></md-icon>
+                <md-button ng-click="ctrl.sampleAction('redo', $event)">
                   Redo
                   <span class="md-alt-text">{{ 'M-Y' | keyboardShortcut }}</span>
                 </md-button>
               </md-menu-item>
               <md-menu-divider></md-menu-divider>
               <md-menu-item class="md-indent">
-                <md-icon md-svg-icon="img/icons/cut.svg"></md-icon>
-                <md-button ng-click="">
+                <md-icon class="ion-scissors" aria-hidden="true"></md-icon>
+                <md-button ng-click="ctrl.sampleAction('cut', $event)">
                   Cut
                   <span class="md-alt-text">{{ 'M-X' | keyboardShortcut }}</span>
                 </md-button>
               </md-menu-item>
               <md-menu-item class="md-indent">
-                <md-icon md-svg-icon=""></md-icon>
-                <md-button ng-click="">
+                <md-icon class="ion-ios-copy-outline"></md-icon>
+                <md-button ng-click="ctrl.sampleAction('copy', $event)">
                   Copy
                   <span class="md-alt-text">{{ 'M-C' | keyboardShortcut }}</span>
                 </md-button>
               </md-menu-item>
               <md-menu-item class="md-indent">
-                <md-icon md-svg-icon="undo"></md-icon>
-                <md-button ng-click="">
+                <md-icon class="ion-android-clipboard"></md-icon>
+                <md-button ng-click="ctrl.sampleAction('paste', $event)">
                   Paste
                   <span class="md-alt-text">{{ 'M-P' | keyboardShortcut }}</span>
                 </md-button>
               </md-menu-item>
+              <!--
+              <md-menu-divider></md-menu-divider>
+              <md-menu-item class="md-indent">
+                <md-button ng-click="ctrl.sampleAction('Find and replace', $event)">
+                  Find and replace...
+                  <span class="md-alt-text">{{ 'M-S-H' | keyboardShortcut }}</span>
+                </md-button>
+              </md-menu-item>
+              -->
             </md-menu-content>
           </md-menu>
+          <!-- <md-menu>
+            <button ng-click="$mdMenu.open()">
+              View
+            </button>
+            <md-menu-content>
+              <md-menu-item ng-model="ctrl.settings.printLayout" type="checkbox">Print layout</md-menu-item>
+              <md-menu-item class="md-indent">
+                <md-menu>
+                  <md-button ng-click="$mdMenu.open()">Mode</md-button>
+                  <md-menu-content width="3">
+                    <md-menu-item ng-model="ctrl.settings.presentationMode" type="radio" value="'presentation'">Presentation</md-menu-item>
+                    <md-menu-item ng-model="ctrl.settings.presentationMode" type="radio" value="'edit'">Edit</md-menu-item>
+                    <md-menu-item ng-model="ctrl.settings.presentationMode" type="radio" value="'modifiable'">Modifiable</md-menu-item>
+                  </md-menu-content>
+                </md-menu>
+              </md-menu-item>
+              <md-menu-divider></md-menu-divider>
+              <md-menu-item ng-model="ctrl.settings.showRuler" type="checkbox">Show ruler</md-menu-item>
+              <md-menu-item ng-model="ctrl.settings.showEquationToolbar" type="checkbox">Show equation toolbar</md-menu-item>
+              <md-menu-item ng-model="ctrl.settings.showSpellingSuggestions" type="checkbox">Show spelling suggestions</md-menu-item>
+              <md-menu-divider></md-menu-divider>
+              <md-menu-item ng-model="ctrl.settings.compactControls" type="checkbox">Compact controls</md-menu-item>
+              <md-menu-item ng-model="ctrl.settings.fullScreen" type="checkbox">Full screen</md-menu-item>
+            </md-menu-content>
+          </md-menu> -->
           <md-menu>
             <button ng-click="$mdMenu.open()">
               Format
             </button>
             <md-menu-content>
-              <md-menu-item class="md-indent">
+              <md-menu-item>
+                <md-button ng-click="" aria-label="Settings">
+                  Headers
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
                 <md-button ng-click="ctrl.sampleAction('bold', $event)">
                   Bold
                   <span class="md-alt-text"> {{ 'M-B' | keyboardShortcut }}</span>
                 </md-button>
               </md-menu-item>
-              <md-menu-item class="md-indent">
-                <md-button ng-click="ctrl.sampleAction('italic', $event)">
-                  Italic
-                  <span class="md-alt-text">{{ 'M-I' | keyboardShortcut }}</span>
-                </md-button>
-              </md-menu-item>
-              <md-menu-item class="md-indent">
+              <md-menu-item>
                 <md-button ng-click="ctrl.sampleAction('underline', $event)">
-                  Underline
-                  <span class="md-alt-text">{{ 'M-U' | keyboardShortcut }}</span>
+                  Link
                 </md-button>
               </md-menu-item>
-              <md-menu-item class="md-indent">
-                <md-button ng-click="">
-                  <!--<i class="ion-link"></i>-->Link
-                </md-button>
-              </md-menu-item>
-              <md-menu-item class="md-indent">
-                <md-button ng-click="" aria-label="Settings">
-                  Numbered lists
-                </md-button>
-              </md-menu-item>
-              <md-menu-item class="md-indent">
-                <md-button ng-click="" aria-label="Settings">
-                  Bullet points
-                </md-button>
-              </md-menu-item>
-              <md-menu-item class="md-indent">
-                <md-button ng-click="" aria-label="Settings">
-                  Image
-                </md-button>
-              </md-menu-item>
-              <md-menu-item class="md-indent">
-                <md-button ng-click="" aria-label="Settings">
-                  Headers
-                </md-button>
-              </md-menu-item>
-              <md-menu-item class="md-indent">
+              <md-menu-item>
                 <md-button ng-click="" aria-label="Settings">
                   Emphasis
                 </md-button>
               </md-menu-item>
-              <md-menu-item class="md-indent">
+              <md-menu-item>
+                <md-button ng-click="" aria-label="Settings">
+                  Numbered lists
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="" aria-label="Settings">
+                  Bullet points
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="" aria-label="Settings">
+                  Image
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
                 <md-button ng-click="" aria-label="Settings">
                   Inline code
                 </md-button>
               </md-menu-item>
-              <md-menu-item class="md-indent">
+              <md-menu-item>
                 <md-button ng-click="" aria-label="Settings">
                   Blockquotes
                 </md-button>
               </md-menu-item>
-              <md-menu-item class="md-indent">
+              <md-menu-item>
                 <md-button ng-click="" aria-label="Settings">
                   Insert code
                 </md-button>
               </md-menu-item>
+              </md-menu-item>
+
+              <!--<md-menu-item>
+                <md-button ng-click="ctrl.sampleAction('strikethrough', $event)">
+                  Strikethrough
+                  <span class="md-alt-text">{{ 'A-S-5' | keyboardShortcut }}</span>
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="ctrl.sampleAction('superscript', $event)">
+                  Superscript
+                  <span class="md-alt-text">{{ 'M-.' | keyboardShortcut }}</span>
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="ctrl.sampleAction('subscript', $event)">
+                  Subscript
+                  <span class="md-alt-text">{{ 'M-,' | keyboardShortcut }}</span>
+                </md-button>
+              </md-menu-item>
+              <md-menu-divider></md-menu-divider>
+              <md-menu-item>
+                <md-button ng-click="ctrl.toggleSetting('clearFormatting')">Clear Formatting</md-button>
+              </md-menu-item>-->
             </md-menu-content>
           </md-menu>
         </md-menu-bar>
       </div>
     </div>
-
-    <div class="toolbar">
+    <md-menu-bar class="toolbar">
       <!--file managger -->
       <md-menu>
         <md-button ng-click="fileMngr.new()" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/document.svg"></md-icon>
+          <md-icon class="ion-android-document"></md-icon>
         </md-button>
       </md-menu>
       <md-menu>
         <md-button ng-click="fileMngr.open()" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/open.svg"></md-icon>
+          <md-icon class="ion-android-folder-open"></md-icon>
         </md-button>
       </md-menu>
       <md-menu>
         <md-button ng-click="fileMngr.save()" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/save.svg"></md-icon>
+          <md-icon class="fa fa-floppy-o"></md-icon>
         </md-button>
       </md-menu>
 
       <!-- edit -->
       <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/cut.svg"></md-icon>
+          <md-icon class="ion-scissors" aria-hidden="true"></md-icon>
         </md-button>
       </md-menu>
       <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/copy.svg"></md-icon>
+          <md-icon class="ion-ios-copy-outline"></md-icon>
         </md-button>
       </md-menu>
       <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/paste.svg"></md-icon>
+          <md-icon class="ion-android-clipboard"></md-icon>
         </md-button>
       </md-menu>
-
 
       <!--text edit -->
-      <!--
-       <md-menu>
+      <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/bold.svg"></md-icon>
+          <md-icon class="fa fa-header"></md-icon>
         </md-button>
       </md-menu>
       <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/italic.svg"></md-icon>
+          <md-icon class="fa fa-bold"></md-icon>
         </md-button>
       </md-menu>
       <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/strikethrough.svg"></md-icon>
-        </md-button>
-      </md-menu>
--->
-      <!-- run code-->
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/play.svg"></md-icon>
+          <md-icon class="fa fa-table"></md-icon>
         </md-button>
       </md-menu>
       <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/replay.svg"></md-icon>
+          <md-icon class="fa fa-picture-o"></md-icon>
         </md-button>
       </md-menu>
-      <!--row-->
       <md-menu>
-        <md-button aria-label="Add up row" class="md-icon-button" ng-click="$mdMenu.open($event)">
-          <md-icon md-menu-origin md-svg-icon="img/icons/plus-circle.svg"></md-icon>
+        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
+          <md-icon class="fa fa-list-ol"></md-icon>
         </md-button>
-        <md-menu-content width="2">
+      </md-menu>
+      <md-menu>
+        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
+          <md-icon class="fa fa-list-ul"></md-icon>
+        </md-button>
+      </md-menu>
+      <md-menu>
+        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
+          <md-icon class="fa fa-quote-left"></md-icon>
+        </md-button>
+      </md-menu>
+
+      <!-- row -->
+      <md-menu>
+        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
+          <md-icon class="fa fa-arrow-down"></md-icon>
+        </md-button>
+      </md-menu>
+      <md-menu>
+        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
+          <md-icon class="fa fa-arrow-down"></md-icon>
+        </md-button>
+      </md-menu>
+      <md-menu>
+        <md-button ng-click="$mdMenu.open()" class="md-icon-button" aria-label="Settings">
+          <md-icon class="ion-plus-circled"></md-icon>
+        </md-button>
+        <md-menu-content>
           <md-menu-item>
-            <md-button ng-click="">
+            <md-button ng-click="markdown">
               Markdown
             </md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button ng-click="">
+            <md-button ng-click="code">
               NodeJS
             </md-button>
           </md-menu-item>
         </md-menu-content>
       </md-menu>
+      <!-- run code-->
       <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/arrow-up.svg"></md-icon>
+          <md-icon class="ion-play"></md-icon>
         </md-button>
       </md-menu>
       <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/arrow-down.svg"></md-icon>
+          <md-icon class="ion-stop"></md-icon>
         </md-button>
       </md-menu>
-      <!--other -->
+
+      <!-- other -->
       <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
           <md-icon md-svg-icon="img/icons/arrow-double-up.svg"></md-icon>
@@ -268,17 +332,18 @@
       </md-menu>
       <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/screen-full.svg"></md-icon>
+          <md-icon class="ion-android-expand"></md-icon>
         </md-button>
       </md-menu>
-    </div>
+
+    </md-menu-bar>
   </md-toolbar>
 
   <md-content class="page-container">
     <md-card class="page">
       <h1>Untitled document</h1>
       <div class="smartrow-con" ng-repeat="i in doc.data">
-        <smartrow class="smartrow-con" ng-class="{ 'selected' : selected == $index,'editing' : i.editing }" ng-dblclick="turnEditing(i, true, $event)" rowmodel="i"> SMART</smartrow>
+        <smartrow class="smartrow-con" ng-class="{ 'selected' : selected == $index, 'editing' : i.editing }" ng-dblclick="turnEditing(i, true, $event)" rowmodel="i"> SMART</smartrow>
       </div>
     </md-card>
   </md-content>

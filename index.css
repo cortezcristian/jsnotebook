@@ -123,15 +123,11 @@ md-menu-bar {
   height: 42px;
 }
 
-.md-button.md-icon-button {
-    margin: 0 6px;
-    min-width: 20px;
-    line-height: 24px;
-    border-radius: 50%;
-}
-.btn-group .md-button.md-icon-button{
-    margin: 0 0px;
-    min-width: 20px;
-    line-height: 24px;
-    border-radius: 50%;
+.btn-group .md-button.md-icon-button {}
+
+md-icon {
+  height: auto;
+  width: auto;
+  min-height: 12px;
+  max-width: 24px,
 }
