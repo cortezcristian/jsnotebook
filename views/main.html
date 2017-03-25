@@ -55,73 +55,39 @@
               Edit
             </button>
             <md-menu-content>
-              <md-menu-item class="md-indent">
+              <md-menu-item>
                 <md-button ng-click="ctrl.sampleAction('undo', $event)">
                   Undo
                   <span class="md-alt-text">{{ 'M-Z' | keyboardShortcut }}</span>
                 </md-button>
               </md-menu-item>
-              <md-menu-item class="md-indent">
+              <md-menu-item>
                 <md-button ng-click="ctrl.sampleAction('redo', $event)">
                   Redo
                   <span class="md-alt-text">{{ 'M-Y' | keyboardShortcut }}</span>
                 </md-button>
               </md-menu-item>
               <md-menu-divider></md-menu-divider>
-              <md-menu-item class="md-indent">
+              <md-menu-item>
                 <md-button ng-click="ctrl.sampleAction('cut', $event)">
                   Cut
                   <span class="md-alt-text">{{ 'M-X' | keyboardShortcut }}</span>
                 </md-button>
               </md-menu-item>
-              <md-menu-item class="md-indent">
+              <md-menu-item>
                 <md-button ng-click="ctrl.sampleAction('copy', $event)">
                   Copy
                   <span class="md-alt-text">{{ 'M-C' | keyboardShortcut }}</span>
                 </md-button>
               </md-menu-item>
-              <md-menu-item class="md-indent">
+              <md-menu-item>
                 <md-button ng-click="ctrl.sampleAction('paste', $event)">
                   Paste
                   <span class="md-alt-text">{{ 'M-P' | keyboardShortcut }}</span>
                 </md-button>
               </md-menu-item>
-              <!--
-              <md-menu-divider></md-menu-divider>
-              <md-menu-item class="md-indent">
-                <md-button ng-click="ctrl.sampleAction('Find and replace', $event)">
-                  Find and replace...
-                  <span class="md-alt-text">{{ 'M-S-H' | keyboardShortcut }}</span>
-                </md-button>
-              </md-menu-item>
-              -->
             </md-menu-content>
           </md-menu>
-          <!-- <md-menu>
-            <button ng-click="$mdMenu.open()">
-              View
-            </button>
-            <md-menu-content>
-              <md-menu-item ng-model="ctrl.settings.printLayout" type="checkbox">Print layout</md-menu-item>
-              <md-menu-item class="md-indent">
-                <md-menu>
-                  <md-button ng-click="$mdMenu.open()">Mode</md-button>
-                  <md-menu-content width="3">
-                    <md-menu-item ng-model="ctrl.settings.presentationMode" type="radio" value="'presentation'">Presentation</md-menu-item>
-                    <md-menu-item ng-model="ctrl.settings.presentationMode" type="radio" value="'edit'">Edit</md-menu-item>
-                    <md-menu-item ng-model="ctrl.settings.presentationMode" type="radio" value="'modifiable'">Modifiable</md-menu-item>
-                  </md-menu-content>
-                </md-menu>
-              </md-menu-item>
-              <md-menu-divider></md-menu-divider>
-              <md-menu-item ng-model="ctrl.settings.showRuler" type="checkbox">Show ruler</md-menu-item>
-              <md-menu-item ng-model="ctrl.settings.showEquationToolbar" type="checkbox">Show equation toolbar</md-menu-item>
-              <md-menu-item ng-model="ctrl.settings.showSpellingSuggestions" type="checkbox">Show spelling suggestions</md-menu-item>
-              <md-menu-divider></md-menu-divider>
-              <md-menu-item ng-model="ctrl.settings.compactControls" type="checkbox">Compact controls</md-menu-item>
-              <md-menu-item ng-model="ctrl.settings.fullScreen" type="checkbox">Full screen</md-menu-item>
-            </md-menu-content>
-          </md-menu> -->
           <md-menu>
             <button ng-click="$mdMenu.open()">
               Format
@@ -191,34 +157,12 @@
                 </md-button>
               </md-menu-item>
               </md-menu-item>
-
-              <!--<md-menu-item>
-                <md-button ng-click="ctrl.sampleAction('strikethrough', $event)">
-                  Strikethrough
-                  <span class="md-alt-text">{{ 'A-S-5' | keyboardShortcut }}</span>
-                </md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button ng-click="ctrl.sampleAction('superscript', $event)">
-                  Superscript
-                  <span class="md-alt-text">{{ 'M-.' | keyboardShortcut }}</span>
-                </md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button ng-click="ctrl.sampleAction('subscript', $event)">
-                  Subscript
-                  <span class="md-alt-text">{{ 'M-,' | keyboardShortcut }}</span>
-                </md-button>
-              </md-menu-item>
-              <md-menu-divider></md-menu-divider>
-              <md-menu-item>
-                <md-button ng-click="ctrl.toggleSetting('clearFormatting')">Clear Formatting</md-button>
-              </md-menu-item>-->
             </md-menu-content>
           </md-menu>
         </md-menu-bar>
       </div>
     </div>
+
     <md-menu-bar class="toolbar">
       <!--file managger -->
       <md-menu>
@@ -254,17 +198,6 @@
         </md-button>
       </md-menu>
 
-      <!-- move row-->
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/arrow-up.svg"></md-icon>
-        </md-button>
-      </md-menu>
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/arrow-down.svg"></md-icon>
-        </md-button>
-      </md-menu>
 
       <!--text edit -->
       <md-menu>
@@ -282,43 +215,6 @@
           <md-icon md-svg-icon="img/icons/strikethrough.svg"></md-icon>
         </md-button>
       </md-menu>
-      <!--
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/link.svg"></md-icon>
-        </md-button>
-      </md-menu>
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/list-ul.svg"></md-icon>
-        </md-button>
-      </md-menu>
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/list-ol.svg"></md-icon>
-        </md-button>
-      </md-menu>
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/table.svg"></md-icon>
-        </md-button>
-      </md-menu>
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/picture.svg"></md-icon>
-        </md-button>
-      </md-menu>
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/quote.svg"></md-icon>
-        </md-button>
-      </md-menu>
-      <md-menu>
-        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/check.svg"></md-icon>
-        </md-button>
-      </md-menu>
-      -->
 
       <!-- run code-->
       <md-menu>
@@ -331,28 +227,33 @@
           <md-icon md-svg-icon="img/icons/replay.svg"></md-icon>
         </md-button>
       </md-menu>
+      <!--row-->
       <md-menu>
-        <md-select ng-model="addRowType" placeholder="add up row" class="md-no-underline">
-          <md-option value="markdown">Markdown</md-option>
-          <md-option value="code">NodeJS</md-option>
-        </md-select>
-      </md-menu>
-      <md-menu>
-        <md-button ng-click="$mdMenu.open()" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/plus-circle.svg"></md-icon>
+        <md-button aria-label="Add up row" class="md-icon-button" ng-click="$mdMenu.open($event)">
+          <md-icon md-menu-origin md-svg-icon="img/icons/plus-circle.svg"></md-icon>
         </md-button>
-        <md-menu-content>
+        <md-menu-content width="2">
           <md-menu-item>
-            <md-button ng-click="ctrl.sampleAction('bold', $event)">
+            <md-button ng-click="">
               Markdown
             </md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button ng-click="ctrl.sampleAction('italic', $event)">
+            <md-button ng-click="">
               NodeJS
             </md-button>
           </md-menu-item>
         </md-menu-content>
+      </md-menu>
+      <md-menu>
+        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
+          <md-icon md-svg-icon="img/icons/arrow-up.svg"></md-icon>
+        </md-button>
+      </md-menu>
+      <md-menu>
+        <md-button ng-click="" class="md-icon-button" aria-label="Settings">
+          <md-icon md-svg-icon="img/icons/arrow-down.svg"></md-icon>
+        </md-button>
       </md-menu>
       <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
@@ -371,9 +272,7 @@
     <md-card class="page">
       <h1>Untitled document</h1>
       <div class="smartrow-con" ng-repeat="i in doc.data">
-        <smartrow class="smartrow-con" ng-class="{ 'selected' : selected == $index,
-							'editing' : i.editing }" ng-dblclick="turnEditing(i, true, $event)" rowmodel="i">
-          SMART</smartrow>
+        <smartrow class="smartrow-con" ng-class="{ 'selected' : selected == $index,'editing' : i.editing }" ng-dblclick="turnEditing(i, true, $event)" rowmodel="i"> SMART</smartrow>
       </div>
     </md-card>
   </md-content>
