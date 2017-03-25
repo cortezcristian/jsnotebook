@@ -330,12 +330,12 @@
       <!-- other -->
       <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon md-svg-icon="img/icons/arrow-double-up.svg"></md-icon>
+          <md-icon md-svg-icon="{{ menuHide? img/icons/arrow-double-down.svg : img/icons/arrow-double-up.svg }}"></md-icon>
         </md-button>
       </md-menu>
       <md-menu>
         <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-          <md-icon class="ion-android-expand"></md-icon>
+          <md-icon class="{{ fullscreen?ion-android-contract :ion-android-expand}}"></md-icon>
         </md-button>
       </md-menu>
 
