@@ -43,16 +43,19 @@
         $log.log('request-openfile');
         ipc.send('request-openfile');
       };
-      $rootScope.fileMngr.opened = function(event, res) {
-        $log.log('File Opened:', res);
-        $rootScope.doc = JSON.parse(res);
+      $rootScope.fileMngr.opened = function(event, doc) {
+        //TODO: limpiar doc, propieda loaded, porque se guarda con el valor true
+        $log.log('File Opened:', doc);
+        $rootScope.doc = JSON.parse(doc);
+        $rootScope.doc.data.map(function(element) {
+          element.loaded = false;
+          element.editing= null;
+        });
         $rootScope.$apply();
       };
       ipc.on('openfile-complete', $rootScope.fileMngr.opened);
 
       $rootScope.fileMngr.save = function() {
-        //TODO: limpiar doc, propieda loaded, tengo otra opcion ignorarlo en la primera carga, con variagle global o en el doc
-
         $log.log('request-savefile');
         ipc.send('request-savefile', {
           document: angular.toJson($rootScope.doc)
