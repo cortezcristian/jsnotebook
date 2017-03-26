@@ -1,9 +1,12 @@
 (function() {
+  'use strict';
   angular
     .module('jsnotebook')
     .filter('keyboardShortcut', function($window) {
       return function(str) {
-        if (!str) return;
+        if (!str) {
+          return;
+        }
         var keys = str.split('-');
         var isOSX = /Mac OS X/.test($window.navigator.userAgent);
 
@@ -43,18 +46,23 @@
       $rootScope.fileMngr.opened = function(event, res) {
         $log.log('File Opened:', res);
         $rootScope.doc = JSON.parse(res);
+        $rootScope.$apply();
       };
       ipc.on('openfile-complete', $rootScope.fileMngr.opened);
-      
+
       $rootScope.fileMngr.save = function() {
+        //TODO: limpiar doc, propieda loaded, tengo otra opcion ignorarlo en la primera carga, con variagle global o en el doc
+
         $log.log('request-savefile');
-        ipc.send('request-savefile',{ document: JSON.stringify($rootScope.doc)});
-      }
-/*      $rootScope.fileMngr.saved = function(event, res) {
+        ipc.send('request-savefile', {
+          document: angular.toJson($rootScope.doc)
+        });
+      };
+      $rootScope.fileMngr.saved = function(event, res) {
         $log.log('File saveed:', res);
       };
-      ipc.on('savefile-complete', $rootScope.fileMngr.saveed);
-*/
+      ipc.on('savefile-complete', $rootScope.fileMngr.saved);
+
       // Useful key codes
       // Left: 37 Up: 38 Right: 39 Down: 40
       $rootScope.triggerKeyDown = function(element, keyCode) {
@@ -152,10 +160,10 @@
               if (!editor.isFocused()) {
                 editor.focus();
               }
-            }, 1)
+            }, 1);
           }
         }
-      }
+      };
 
       // Find By Editor Id
       $rootScope.findByEditorId = function(ed_id) {
@@ -167,7 +175,7 @@
         });
 
         return index;
-      }
+      };
 
       $rootScope.doc = {
         "data": [{
@@ -319,7 +327,7 @@
                         item: item
                       });
                       $timeout(function() {
-                        $log.log("requesting keydown...")
+                        $log.log("requesting keydown...");
                         ipc.send('request-keydown');
                       }, 5);
                       ed.execCommand("turnoffedition");
@@ -370,7 +378,7 @@
                   $log.log("Esc item:", item);
                   var ind = $rootScope.doc.data.indexOf(item);
                   if (ind !== -1) {
-                    $log.log("Set editing false: ", ind)
+                    $log.log("Set editing false: ", ind);
                     // Set Editing False
                     $rootScope.doc.data[ind].editing = false;
                     // Emit Change
@@ -383,13 +391,13 @@
                       $rootScope.doc.data[ind].editing = false;
                       //$rootScope.triggerKeyDown($('body'), 40);
                       try {
-                        scope.aceEditor.session._emit('change')
+                        scope.aceEditor.session._emit('change');
                       } catch (e) {
                         $log.log("Error...");
                         $rootScope.doc.data[ind].editing = false;
                         scope.$apply();
                       }
-                    }, 0)
+                    }, 0);
                   }
                 },
                 bindKey: {
