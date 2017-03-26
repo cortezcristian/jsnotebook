@@ -94,10 +94,11 @@
       $rootScope.rowMngr.move = function(value) {
         var selected = $rootScope.selected;
         console.log(value, selected);
-        if (selected + value > 0 && selected + value < $rootScope.doc.data.length - 1) {
+        if (selected + value >= 0 && selected + value < $rootScope.doc.data.length) {
           var rowAux = $rootScope.doc.data[selected];
           $rootScope.doc.data[selected] = $rootScope.doc.data[selected + value];
-          $rootScope.doc.data[selected+value] = rowAux;
+          $rootScope.doc.data[selected + value] = rowAux;
+          $rootScope.selected = selected + value;
         }
       };
 
