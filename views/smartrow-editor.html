@@ -1,12 +1,6 @@
 <div class="smartrow">
-	<pre class="hide"> {{rowmodel}} </pre>
-	<div ui-ace="{ onLoad : aceLoaded, mode: 'javascript', minLines: 1 }"
-		id="{{rowmodel.editor_id}}"
-		ng-model="rowmodel['source'][0]"></div>
-
-	<pre class="stdout" ng-show="rowmodel.stdout">{{rowmodel.stdout}}</pre>
-
-	<pre class="stderr" ng-show="rowmodel.stderr">{{rowmodel.stderr}}</pre>
-
-
+  <pre class="hide"> {{rowmodel}} </pre>
+  <div ui-ace="{ onLoad : aceLoaded, mode: 'javascript', minLines: 1 }" id="{{rowmodel.editor_id}}" ng-model="rowmodel['source'][0]"></div>
+  <pre class="stdout" ng-show="rowmodel.stdout">{{rowmodel.stdout}}</pre>
+  <pre class="stderr" ng-show="rowmodel.stderr">{{rowmodel.stderr}}</pre>
 </div>
