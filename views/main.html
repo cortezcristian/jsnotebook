@@ -31,16 +31,16 @@
                   Save
                 </md-button>
               </md-menu-item>
-              <md-menu-item>
+              <!-- <md-menu-item>
                 <md-button ng-click="fileMngr.saveas()">
                   Save As...
                 </md-button>
-              </md-menu-item>
-              <!-- <md-menu-item>
+              </md-menu-item> -->
+              <md-menu-item>
                 <md-button ng-click="ctrl.sampleAction('Rename', $event)" disabled="disabled">
                   Rename
                 </md-button>
-              </md-menu-item> -->
+              </md-menu-item>
               <md-menu-divider></md-menu-divider>
               <md-menu-item>
                 <md-button ng-click="ctrl.sampleAction('Print', $event)">
@@ -286,12 +286,12 @@
       -->
           <!-- row -->
           <md-menu>
-            <md-button ng-click="" class="md-icon-button right" aria-label="Settings">
+            <md-button ng-click="rowMngr.move(-1)" class="md-icon-button right" aria-label="Settings">
               <md-icon class="fa fa-arrow-up"></md-icon>
             </md-button>
           </md-menu>
           <md-menu>
-            <md-button ng-click="" class="md-icon-button center" aria-label="Settings">
+            <md-button ng-click="rowMngr.move(1)" class="md-icon-button center" aria-label="Settings">
               <md-icon class="fa fa-arrow-down"></md-icon>
             </md-button>
           </md-menu>
@@ -301,12 +301,12 @@
             </md-button>
             <md-menu-content>
               <md-menu-item>
-                <md-button ng-click="markdown">
+                <md-button ng-click="rowMngr.add('markdown')">
                   Markdown
                 </md-button>
               </md-menu-item>
               <md-menu-item>
-                <md-button ng-click="code">
+                <md-button ng-click="rowMngr.add('code')">
                   NodeJS
                 </md-button>
               </md-menu-item>

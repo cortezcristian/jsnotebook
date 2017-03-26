@@ -49,7 +49,8 @@
         $rootScope.doc = JSON.parse(doc);
         $rootScope.doc.data.map(function(element) {
           element.loaded = false;
-          element.editing= null;
+          element.selected = false;
+          element.editing = false;
         });
         $rootScope.$apply();
       };
@@ -65,6 +66,40 @@
         $log.log('File saveed:', res);
       };
       ipc.on('savefile-complete', $rootScope.fileMngr.saved);
+
+      // New row and move row
+      $rootScope.rowMngr = {};
+      $rootScope.rowMngr.remove = function() {};
+      $rootScope.rowMngr.add = function(type) {
+        // TODO: I would like to use row factory.
+        var rowCode = {
+          "rowtype": "code",
+          "execution_count": 0,
+          "metadata": {
+            "collapsed": false
+          },
+          "outputs": [],
+          "source": [""],
+          //"editor_id": "editor_" + $rootScope.doc.data.length
+        };
+        var rowMarkdown = {
+          "rowtype": "markdown",
+          "metadata": {},
+          "source": [""],
+          //"editor_id": "editor_" + $rootScope.doc.data.length
+        };
+        $rootScope.selected = $rootScope.doc.data.push(/code/.test(type) ? rowCode : rowMarkdown) - 1;
+        $rootScope.turnEditing($rootScope.doc.data[$rootScope.selected], true, event);
+      };
+      $rootScope.rowMngr.move = function(value) {
+        var selected = $rootScope.selected;
+        console.log(value, selected);
+        if (selected + value > 0 && selected + value < $rootScope.doc.data.length - 1) {
+          var rowAux = $rootScope.doc.data[selected];
+          $rootScope.doc.data[selected] = $rootScope.doc.data[selected + value];
+          $rootScope.doc.data[selected+value] = rowAux;
+        }
+      };
 
       // Useful key codes
       // Left: 37 Up: 38 Right: 39 Down: 40
@@ -112,6 +147,7 @@
         }
       });
 
+      // row selected
       $rootScope.selected = 0;
 
       $rootScope.$watch('selected', function() {
@@ -180,6 +216,7 @@
         return index;
       };
 
+      // document opened
       $rootScope.doc = {
         "data": [{
             "rowtype": "markdown",
