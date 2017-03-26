@@ -96,7 +96,15 @@ md-content {
 }
 
 md-menu-bar {
-  height: 36px;
+  height: 35px;
+}
+
+.tool-bar-separator {
+display: inline-block;
+height: 35px;
+margin: 0 5px 0 4px;
+padding: 0;
+vertical-align: top;
 }
 
 .md-button.md-icon-button {

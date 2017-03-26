@@ -1,13 +1,17 @@
 'use strict';
 const electron = require('electron');
-const {  VM } = require('vm2');
+const {
+  VM
+} = require('vm2');
 const vm = new VM();
 const ipcMain = require('electron').ipcMain;
 const shell = require('electron').shell;
-const { dialog } = require('electron');
+const {
+  dialog
+} = require('electron');
 // https://github.com/szwacz/fs-jetpack
 const gfs = require('graceful-fs');
-
+const fs = require('fs');
 const app = electron.app;
 
 // adds debug features like hotkeys for triggering dev tools and reload
@@ -24,6 +28,7 @@ function onClosed() {
 
 function createMainWindow() {
   const win = new electron.BrowserWindow({
+    title: "JSNotebook",
     autoHideMenuBar: true,
     type: 'normal', // Default normal . On Linux, desktop, dock, toolbar, splash, notification.  On OS X, desktop, textured
     center: true,
@@ -82,12 +87,47 @@ ipcMain.on('vm-run', (event, o) => {
 ipcMain.on('request-openfile', (event, target) => {
   // https://github.com/electron/electron/blob/master/docs/api/dialog.md
   dialog.showOpenDialog({
+    title: 'JSNotebook',
+    filters: [{
+        name: 'JSNotebook',
+        extensions: ['jsnb']
+      },
+      {
+        name: 'All Files',
+        extensions: ['*']
+      }
+    ],
     properties: ['openFile']
   }, function(files) {
     console.log("files:", files);
     var file = gfs.readFileSync(files[0]);
     console.log(file.toString());
     event.sender.send('openfile-complete', file.toString());
+  });
+});
+
+ipcMain.on('request-savefile', (event, target) => {
+  dialog.showSaveDialog(mainWindow, {
+    title: 'JSNotebook',
+    filters: [{
+        name: 'JSNotebook',
+        extensions: ['jsnb']
+      },
+      {
+        name: 'All Files',
+        extensions: ['*']
+      }
+    ]
+  }, function(filename) {
+    console.log(target.document);
+    console.log("file save:", filename);
+    fs.writeFile(filename, target.document, {
+      encoding: 'utf8'
+    }, (err) => {
+      if (err){ throw err;}
+      event.sender.send('savefile-complete', filename);
+    });
+
   });
 });
 

@@ -45,7 +45,16 @@
         $rootScope.doc = JSON.parse(res);
       };
       ipc.on('openfile-complete', $rootScope.fileMngr.opened);
-
+      
+      $rootScope.fileMngr.save = function() {
+        $log.log('request-savefile');
+        ipc.send('request-savefile',{ document: JSON.stringify($rootScope.doc)});
+      }
+/*      $rootScope.fileMngr.saved = function(event, res) {
+        $log.log('File saveed:', res);
+      };
+      ipc.on('savefile-complete', $rootScope.fileMngr.saveed);
+*/
       // Useful key codes
       // Left: 37 Up: 38 Right: 39 Down: 40
       $rootScope.triggerKeyDown = function(element, keyCode) {

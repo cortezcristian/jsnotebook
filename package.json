@@ -39,6 +39,8 @@
     "electron": "^1.6.2",
     "electron-packager": "^8.6.0",
     "electron-prebuilt": "^1.4.13",
+    "eslint": "^3.18.0",
+    "eslint-config-google": "^0.7.1",
     "gulp": "^3.9.1",
     "gulp-util": "^3.0.8",
     "mocha": "^3.2.0",
