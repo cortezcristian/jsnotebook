@@ -59,7 +59,6 @@ header h1 {
 .menuBardemoBasicUsage {}
 
 .menuBardemoBasicUsage .menu-con {
-  min-height: 96px;
   border-bottom: 1px solid #ccc;
   background: white;
 }
@@ -91,6 +90,10 @@ header h1 {
   border-radius: 0 0 .28571429rem .28571429rem;
 }
 
+md-toolbar.md-menu-toolbar {
+  background-color: #eee;
+}
+
 md-content {
   background-color: #eee;
 }
@@ -100,11 +103,11 @@ md-menu-bar {
 }
 
 .tool-bar-separator {
-display: inline-block;
-height: 35px;
-margin: 0 5px 0 4px;
-padding: 0;
-vertical-align: top;
+  display: inline-block;
+  height: 35px;
+  margin: 0 5px 0 4px;
+  padding: 0;
+  vertical-align: top;
 }
 
 .md-button.md-icon-button {

@@ -1,12 +1,12 @@
 <div class="menuBardemoBasicUsage" ng-cloak layout="column" flex layout-fill>
   <md-toolbar class="md-menu-toolbar" /*style="padding-bottom:10px*/">
-    <div class="menu-con" layout="row">
+    <div class="menu-con" layout="row" style="{{!fullscreen.value ? 'min-height: 96px;' : 'min-height: 40px;'}}" >
       <md-toolbar-filler layout layout-align="center center" style="background-color: rgb(63, 181, 68);">
-        <i class="ion-social-nodejs" style="font-size:50px"></i>
+        <i class="ion-social-nodejs" style="{{!fullscreen.value ? 'font-size:50px;':'font-size:36px;'}}"></i>
       </md-toolbar-filler>
 
       <div>
-        <h2 class="md-toolbar-tools">{{doc.name}}</h2>
+        <h2 ng-show="!fullscreen.value" class="md-toolbar-tools">{{doc.name}}</h2>
         <md-menu-bar>
           <md-menu>
             <button ng-click="$mdMenu.open()">
