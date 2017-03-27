@@ -12,6 +12,7 @@ const {
 // https://github.com/szwacz/fs-jetpack
 const gfs = require('graceful-fs');
 const fs = require('fs');
+const path = require('path');
 const app = electron.app;
 
 // adds debug features like hotkeys for triggering dev tools and reload
@@ -102,7 +103,10 @@ ipcMain.on('request-openfile', (event, target) => {
     console.log("files:", files);
     var file = gfs.readFileSync(files[0]);
     console.log(file.toString());
-    event.sender.send('openfile-complete', file.toString());
+    event.sender.send('openfile-complete', {
+      file: file.toString(),
+      filename: path.win32.basename(files[0])
+    });
   });
 });
 
@@ -124,7 +128,9 @@ ipcMain.on('request-savefile', (event, target) => {
     fs.writeFile(filename, target.document, {
       encoding: 'utf8'
     }, (err) => {
-      if (err){ throw err;}
+      if (err) {
+        throw err;
+      }
       event.sender.send('savefile-complete', filename);
     });
 
@@ -135,6 +141,10 @@ ipcMain.on('element-clicked', (event, target) => {
   console.log('element-clicked:', target);
   //https://github.com/electron/electron/issues/1344
   shell.openExternal(target);
+});
+
+ipcMain.on('set-fullscreen', (event, flag) => {
+  mainWindow.setFullScreen(flag);
 });
 
 ipcMain.on('request-keydown', (event, target) => {
@@ -166,4 +176,4 @@ app.on('ready', () => {
 // https://github.com/patriksimek/vm2/issues/53
 process.on('uncaughtException', (err) => {
   console.error('Asynchronous error caught.', err);
-})
+});

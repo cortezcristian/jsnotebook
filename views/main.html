@@ -6,7 +6,7 @@
       </md-toolbar-filler>
 
       <div>
-        <h2 class="md-toolbar-tools">Untitled document</h2>
+        <h2 class="md-toolbar-tools">{{doc.name}}</h2>
         <md-menu-bar>
           <md-menu>
             <button ng-click="$mdMenu.open()">
@@ -326,8 +326,8 @@
 
           <!-- other -->
           <md-menu>
-            <md-button ng-click="" class="md-icon-button" aria-label="Settings">
-              <md-icon class="ion-android-expand"></md-icon><!-- ion-android-contract --> 
+            <md-button ng-click="fullscreen.set(!fullscreen.value)" class="md-icon-button" aria-label="Settings">
+              <md-icon ng-class="fullscreen.icon"></md-icon>
             </md-button>
           </md-menu>
 
@@ -338,7 +338,7 @@
 
   <md-content class="page-container">
     <md-card class="page">
-      <h1>Untitled document</h1>
+      <h1>{{doc.name}}</h1>
       <div class="smartrow-con" ng-repeat="i in doc.data">
         <smartrow class="smartrow-con" ng-class="{ 'selected' : selected == $index, 'editing' : i.editing }" ng-dblclick="turnEditing(i, true, $event)" rowmodel="i"> SMART</smartrow>
       </div>

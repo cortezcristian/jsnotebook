@@ -19,7 +19,7 @@
         };
 
         return keys.map(function(key, index) {
-          var last = index == keys.length - 1;
+          var last = index === keys.length - 1;
           return last ? key : abbreviations[key];
         }).join(seperator);
       };
@@ -43,10 +43,11 @@
         $log.log('request-openfile');
         ipc.send('request-openfile');
       };
-      $rootScope.fileMngr.opened = function(event, doc) {
+      $rootScope.fileMngr.opened = function(event, data) {
         //TODO: limpiar doc, propieda loaded, porque se guarda con el valor true
-        $log.log('File Opened:', doc);
-        $rootScope.doc = JSON.parse(doc);
+        $log.log('File Opened:', data.file);
+        $rootScope.doc = JSON.parse(data.file);
+        $rootScope.doc.name = data.filename;
         $rootScope.doc.data.map(function(element) {
           element.loaded = false;
           element.selected = false;
@@ -209,7 +210,7 @@
       $rootScope.findByEditorId = function(ed_id) {
         var index = -1;
         angular.forEach($rootScope.doc.data, function(v, i) {
-          if (v.editor_id == ed_id) {
+          if (v.editor_id === ed_id) {
             index = i;
           }
         });
@@ -217,8 +218,17 @@
         return index;
       };
 
+      $rootScope.fullscreen = { value: false,icon:'ion-android-expand' };
+      $rootScope.fullscreen.set = function(value) {
+        ipc.send('set-fullscreen', value);
+        $rootScope.fullscreen.icon = value ? 'ion-android-contract':'ion-android-expand';
+        $rootScope.fullscreen.value = value;
+      };
+
+
       // document opened
       $rootScope.doc = {
+        "name": "New Document",
         "data": [{
             "rowtype": "markdown",
             "metadata": {},
@@ -491,7 +501,6 @@
         }
         */
       };
-
     })
     .directive('onKeyEnter', function() {
       return function(scope, element, attrs) {
