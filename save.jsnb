@@ -2,16 +2,9 @@
   "data": [{
     "rowtype": "markdown",
     "metadata": {},
-    "source": ["# JS Notebook \n# This is an <h1> tag\n## This is an <h2> tag\n###### This is an <h6> tag\n"],
+    "source": ["# Thistag is an <h1> \n## This is an <h2> tag\n###### This is an <h6> tag"],
     "loaded": true,
-    "editing": true,
-    "selected": false
-  }, {
-    "rowtype": "markdown",
-    "metadata": {},
-    "source": ["- Download it from [jsnotebook](https://github.com/cortezcristian/jsnotebook/)"],
-    "loaded": true,
-    "editing": null,
+    "editing": false,
     "selected": false
   }, {
     "rowtype": "code",
@@ -23,24 +16,14 @@
     "source": ["Math.random()", "os.hostname()"],
     "loaded": true,
     "editing": false,
-    "selected": true
-  }, {
-    "rowtype": "code",
-    "execution_count": 1,
-    "metadata": {
-      "collapsed": false
-    },
-    "outputs": [],
-    "source": ["var os = require('os')\n", "os.hostname()"],
-    "loaded": true,
-    "editing": null,
     "selected": false
   }, {
     "rowtype": "markdown",
     "metadata": {},
     "source": ["Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Maecenas sed diam eget risus varius blandit sit amet non magna. Praesent commodo cursus magna, vel scelerisque nisl consectetur et."],
     "loaded": true,
-    "editing": null,
+    "editing": false,
     "selected": false
-  }]
+  }],
+  "name": "save.jsnb"
 }

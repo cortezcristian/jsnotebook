@@ -81,13 +81,13 @@
           },
           "outputs": [],
           "source": [""],
-          //"editor_id": "editor_" + $rootScope.doc.data.length
+          "editor_id": "editor_" + $rootScope.doc.data.length
         };
         var rowMarkdown = {
           "rowtype": "markdown",
           "metadata": {},
           "source": [""],
-          //"editor_id": "editor_" + $rootScope.doc.data.length
+          "editor_id": "editor_" + $rootScope.doc.data.length
         };
         $rootScope.selected = $rootScope.doc.data.push(/code/.test(type) ? rowCode : rowMarkdown) - 1;
         $rootScope.turnEditing($rootScope.doc.data[$rootScope.selected], true, event);
@@ -218,13 +218,13 @@
         return index;
       };
 
+      // fullscreen
       $rootScope.fullscreen = { value: false,icon:'ion-android-expand' };
       $rootScope.fullscreen.set = function(value) {
         ipc.send('set-fullscreen', value);
         $rootScope.fullscreen.icon = value ? 'ion-android-contract':'ion-android-expand';
         $rootScope.fullscreen.value = value;
       };
-
 
       // document opened
       $rootScope.doc = {
